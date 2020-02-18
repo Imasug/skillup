@@ -6,7 +6,7 @@
 		"serve": "vue-cli-service serve",
 		"build": "vue-cli-service build",
 		"lint": "vue-cli-service lint",
-		"deploy": "npm run build && clasp open --webapp"
+		"deploy": "npm run build && clasp push && clasp open --webapp"
 	},
 	"dependencies": {
 		"core-js": "^3.4.4",
