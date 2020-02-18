@@ -20,5 +20,15 @@ npm run build
 npm run lint
 ```
 
+### Create a gas project
+```
+clasp create --rootDir dist --type webapp
+```
+
+### Deploy
+```
+npm run deploy
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
