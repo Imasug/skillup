@@ -20,6 +20,11 @@ npm run build
 npm run lint
 ```
 
+### Tests
+```
+npm run test:unit -- --watch
+```
+
 ### Create a gas project
 ```
 clasp create --rootDir dist --type webapp
