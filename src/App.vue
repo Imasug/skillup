@@ -2,6 +2,7 @@
   <div>
     <v-app>
       <div>
+        <Toolbar />
         <v-content>
           <router-view />
         </v-content>
@@ -12,7 +13,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Toolbar from "@/components/Toolbar.vue";
 
-@Component
+@Component({
+  components: { Toolbar }
+})
 export default class App extends Vue {}
 </script>

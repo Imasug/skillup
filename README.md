@@ -37,3 +37,7 @@ npm run deploy
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Materials
+See [Avataaars generator](https://getavataaars.com).
+See [FLAT ICON DESIGN](http://flat-icon-design.com).
