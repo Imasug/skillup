@@ -10,5 +10,8 @@ new Vue({
   router,
   store,
   vuetify,
-  render: h => h(App)
+  render: h => h(App),
+  data: {
+    themeColor: "#1D2939"
+  }
 }).$mount("#app");

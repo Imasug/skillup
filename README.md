@@ -20,6 +20,11 @@ npm run build
 npm run lint
 ```
 
+### Tests
+```
+npm run test:unit -- --watch
+```
+
 ### Create a gas project
 ```
 clasp create --rootDir dist --type webapp
@@ -32,3 +37,7 @@ npm run deploy
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Materials
+See [Avataaars generator](https://getavataaars.com).
+See [FLAT ICON DESIGN](http://flat-icon-design.com).
