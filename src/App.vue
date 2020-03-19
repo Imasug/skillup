@@ -3,6 +3,7 @@
     <v-app>
       <div>
         <Toolbar />
+        <NavigationDrawer />
         <v-content>
           <router-view />
         </v-content>
@@ -14,9 +15,10 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Toolbar from "@/components/Toolbar.vue";
+import NavigationDrawer from "@/components/NavigationDrawer.vue";
 
 @Component({
-  components: { Toolbar }
+  components: { Toolbar, NavigationDrawer }
 })
 export default class App extends Vue {}
 </script>

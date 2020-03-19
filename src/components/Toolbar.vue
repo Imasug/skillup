@@ -1,5 +1,11 @@
 <template>
-  <v-app-bar app :color="$root.themeColor" dark class="px-3">
+  <v-app-bar
+    :clipped-left="$vuetify.breakpoint.lgAndUp"
+    app
+    :color="$root.themeColor"
+    dark
+    class="px-3"
+  >
     <div class="mr-3">
       <img src="../assets/rocket.svg" width="36px" />
     </div>
