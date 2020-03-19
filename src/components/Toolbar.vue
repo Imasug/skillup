@@ -4,12 +4,12 @@
     app
     :color="$root.themeColor"
     dark
-    class="px-3"
+    class="px-2"
   >
-    <div class="mr-3">
+    <div class="mr-3 mt-1">
       <img src="../assets/rocket.svg" width="36px" />
     </div>
-    <v-toolbar-title><h4>SkillUp</h4></v-toolbar-title>
+    <v-toolbar-title class="ml-3"><h4>SkillUp</h4></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn icon class="mr-2">
       <v-icon size="28">mdi-cart</v-icon>
