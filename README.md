@@ -43,6 +43,7 @@ See [Avataaars generator](https://getavataaars.com).
 
 ### Icon
 See [FLAT ICON DESIGN](http://flat-icon-design.com).
+See [iconscout](https://iconscout.com/).
 
 ### Font
 See [Google Fonts](https://fonts.google.com/).
