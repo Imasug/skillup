@@ -5,6 +5,7 @@
         <Toolbar />
         <NavigationDrawer />
         <v-content>
+          <Breadcrumbs />
           <router-view />
         </v-content>
       </div>
@@ -16,9 +17,10 @@
 import { Component, Vue } from "vue-property-decorator";
 import Toolbar from "@/components/Toolbar.vue";
 import NavigationDrawer from "@/components/NavigationDrawer.vue";
+import Breadcrumbs from "@/components/Breadcrumbs.vue";
 
 @Component({
-  components: { Toolbar, NavigationDrawer }
+  components: { Toolbar, NavigationDrawer, Breadcrumbs }
 })
 export default class App extends Vue {}
 </script>

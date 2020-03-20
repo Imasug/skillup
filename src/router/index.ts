@@ -1,14 +1,26 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Test from "@/views/test/Test.vue";
+import TestList from "@/views/test/TestList.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/test",
     name: "test",
-    component: Test
+    component: Test,
+    meta: {
+      breadcrumbs: [{ text: "Test" }, { text: "Java" }]
+    }
+  },
+  {
+    path: "/",
+    name: "test-list",
+    component: TestList,
+    meta: {
+      breadcrumbs: [{ text: "Test" }]
+    }
   }
 ];
 

@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div class="mx-4 mt-1">
-      <v-breadcrumbs :items="items"></v-breadcrumbs>
-    </div>
     <div class="mx-10" style="min-width: 500px;">
       <v-stepper class="elevation-0">
         <v-stepper-header class="justify-start" style="height: auto;">
@@ -104,16 +101,7 @@ public class Issue02 {
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Test extends Vue {
-  items = [
-    {
-      text: "Test"
-    },
-    {
-      text: "Java"
-    }
-  ];
-}
+export default class Test extends Vue {}
 </script>
 
 <style scoped>
