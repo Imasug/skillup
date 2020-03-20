@@ -3,8 +3,21 @@
     <div class="mx-2 mt-1">
       <v-breadcrumbs :items="items"></v-breadcrumbs>
     </div>
+    <div class="mx-10">
+      <v-stepper class="elevation-0">
+        <v-stepper-header class="justify-start">
+          <v-stepper-step
+            class="pa-0"
+            v-for="n of 20"
+            :key="n"
+            color="#28a89c"
+            :step="n"
+          ></v-stepper-step>
+        </v-stepper-header>
+      </v-stepper>
+    </div>
     <v-container fluid>
-      <v-row class="mx-3">
+      <v-row class="mx-5">
         <v-col class="col">
           <pre class="code">
 public class Issue02 {
@@ -32,7 +45,7 @@ public class Issue02 {
             このコードをコンパイル、および実行するとどのような結果になりますか。
           </p>
           <v-radio-group>
-            <v-radio color="green">
+            <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
                   <span>
@@ -41,7 +54,7 @@ public class Issue02 {
                 </v-label>
               </template>
             </v-radio>
-            <v-radio color="green">
+            <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
                   <span>
@@ -50,7 +63,7 @@ public class Issue02 {
                 </v-label>
               </template>
             </v-radio>
-            <v-radio color="green">
+            <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
                   <span>
@@ -59,7 +72,7 @@ public class Issue02 {
                 </v-label>
               </template>
             </v-radio>
-            <v-radio color="green">
+            <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
                   <span>
