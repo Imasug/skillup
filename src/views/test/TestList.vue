@@ -1,13 +1,11 @@
 <template>
   <v-container fluid class="py-0">
     <v-row class="mx-5">
-      <v-col>
-        <v-data-table :headers="headers" :items="items" dense>
-          <template v-slot:item.icon>
-            <img src="../../assets/java.svg" width="32px" />
-          </template>
-        </v-data-table>
-      </v-col>
+      <v-data-table :headers="headers" :items="items" dense>
+        <template v-slot:item.icon>
+          <img src="../../assets/java.svg" width="32px" />
+        </template>
+      </v-data-table>
     </v-row>
   </v-container>
 </template>

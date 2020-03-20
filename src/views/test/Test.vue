@@ -86,8 +86,7 @@ public class Issue02 {
             <v-btn icon>
               <v-icon>mdi-arrow-right</v-icon>
             </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon>
+            <v-btn icon style="margin-left:75px;">
               <v-icon>mdi-send</v-icon>
             </v-btn>
           </v-row>
