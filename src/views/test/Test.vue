@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="mx-2 mt-1">
+    <div class="mx-4 mt-1">
       <v-breadcrumbs :items="items"></v-breadcrumbs>
     </div>
-    <div class="mx-10">
+    <div class="mx-10" style="min-width: 500px;">
       <v-stepper class="elevation-0">
-        <v-stepper-header class="justify-start">
+        <v-stepper-header class="justify-start" style="height: auto;">
           <v-stepper-step
             class="pa-0"
             v-for="n of 20"
@@ -16,7 +16,7 @@
         </v-stepper-header>
       </v-stepper>
     </div>
-    <v-container fluid>
+    <v-container fluid class="mt-2">
       <v-row class="mx-5">
         <v-col class="col">
           <pre class="code">
@@ -82,6 +82,18 @@ public class Issue02 {
               </template>
             </v-radio>
           </v-radio-group>
+          <v-row>
+            <v-btn icon>
+              <v-icon>mdi-arrow-left</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-arrow-right</v-icon>
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn icon>
+              <v-icon>mdi-send</v-icon>
+            </v-btn>
+          </v-row>
         </v-col>
       </v-row>
     </v-container>
