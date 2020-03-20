@@ -65,8 +65,7 @@ export default class NavigationDrawer extends Vue {
 
 <style scoped>
 .item-title {
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 16px;
 }
 
 .item-icon {
