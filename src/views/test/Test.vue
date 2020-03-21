@@ -74,30 +74,55 @@ public class Issue02 {
             <v-btn icon>
               <v-icon>mdi-arrow-right</v-icon>
             </v-btn>
-            <v-btn icon style="margin-left:75px;">
+            <v-btn icon style="margin-left:75px;" @click="submit">
               <v-icon>mdi-send</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon @click="reset">
               <v-icon>mdi-undo-variant</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon @click="navigateToResult">
               <v-icon>mdi-chart-donut</v-icon>
             </v-btn>
           </v-row>
         </v-col>
       </v-row>
     </v-container>
+    <ConfirmDialog ref="confirm" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
+import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
 @Component({
-  components: { TestStepper }
+  components: { TestStepper, ConfirmDialog }
 })
-export default class Test extends Vue {}
+export default class Test extends Vue {
+  submit(): void {
+    (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
+      if (flag) {
+        alert("submit");
+        this.$router.push({ name: "test-result" });
+      }
+    });
+  }
+
+  reset(): void {
+    (this.$refs.confirm as any)
+      .open("リセットしますか？")
+      .then((flag: boolean) => {
+        if (flag) {
+          alert("reset");
+        }
+      });
+  }
+
+  navigateToResult(): void {
+    this.$router.push({ name: "test-result" });
+  }
+}
 </script>
 
 <style scoped>
