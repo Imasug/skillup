@@ -77,6 +77,12 @@ public class Issue02 {
             <v-btn icon style="margin-left:75px;">
               <v-icon>mdi-send</v-icon>
             </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-undo-variant</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-chart-donut</v-icon>
+            </v-btn>
           </v-row>
         </v-col>
       </v-row>
