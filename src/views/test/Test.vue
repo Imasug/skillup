@@ -1,18 +1,6 @@
 <template>
   <div>
-    <div class="mx-10" style="min-width: 500px;">
-      <v-stepper class="elevation-0">
-        <v-stepper-header class="justify-start" style="height: auto;">
-          <v-stepper-step
-            class="pa-0"
-            v-for="n of 20"
-            :key="n"
-            color="#28a89c"
-            :step="n"
-          ></v-stepper-step>
-        </v-stepper-header>
-      </v-stepper>
-    </div>
+    <TestStepper />
     <v-container fluid class="mt-2">
       <v-row class="mx-5">
         <v-col class="col">
@@ -98,8 +86,11 @@ public class Issue02 {
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import TestStepper from "@/views/test/components/TestStepper.vue";
 
-@Component
+@Component({
+  components: { TestStepper }
+})
 export default class Test extends Vue {}
 </script>
 
