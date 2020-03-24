@@ -77,13 +77,24 @@ const MOCK_QUESTIONS = [MOCK_QUESTION1, MOCK_QUESTION2];
 
 export default new Vuex.Store({
   state: {
+    questionIndex: 0,
     questions: []
   },
   mutations: {
     updateQuestions(state) {
       // TODO
       state.questions = MOCK_QUESTIONS as never[];
-    }
+    },
+    incrementQuestionIndex(state) {
+      if (state.questionIndex < state.questions.length - 1) {
+        state.questionIndex++;
+      }
+    },
+    decrementQuestionIndex(state) {
+      if (state.questionIndex > 0) {
+        state.questionIndex--;
+      }
+    },
   },
   getters: {
     getQuestionByIndex: (state) => (index: number) => {

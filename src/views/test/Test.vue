@@ -55,22 +55,18 @@ import ConfirmDialog from "@/components/ConfirmDialog.vue";
   components: { TestStepper, ConfirmDialog }
 })
 export default class Test extends Vue {
-  index: number = 0;
-
   get question() {
-    return this.$store.getters.getQuestionByIndex(this.index);
+    return this.$store.getters.getQuestionByIndex(
+      this.$store.state.questionIndex
+    );
   }
 
   prev(): void {
-    if (this.index > 0) {
-      this.index--;
-    }
+    this.$store.commit("decrementQuestionIndex");
   }
 
   next(): void {
-    if (this.index < this.$store.getters.questionsLength - 1) {
-      this.index++;
-    }
+    this.$store.commit("incrementQuestionIndex");
   }
 
   submit(): void {
