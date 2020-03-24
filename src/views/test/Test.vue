@@ -4,54 +4,20 @@
     <v-container fluid class="mt-2">
       <v-row class="mx-5">
         <v-col class="col">
-          <pre class="code">
-public class Issue02 {
-
-    public static void main(String[] args) {
-        Issue02 service = new Issue02();
-
-        try{
-            service.newException();
-        }catch(IOException e ){
-            e.printStackTrace();
-        }
-    }
-
-
-    public void newException() {
-        throw new IOException("例外発生！！");
-    }
-}
-        </pre>
+          <pre class="sentence">{{ question.sentence }}</pre>
         </v-col>
         <v-col class="col">
-          <p>このコードをコンパイル、および実行するとどのような結果になりますか。</p>
+          <p>{{ question.question }}</p>
           <v-radio-group>
-            <v-radio color="#28a89c">
+            <v-radio
+              v-for="choice in question.choices"
+              :key="choice.value"
+              :value="choice.value"
+              color="#28a89c"
+            >
               <template v-slot:label>
                 <v-label>
-                  <span>コンパイルエラーが発生する</span>
-                </v-label>
-              </template>
-            </v-radio>
-            <v-radio color="#28a89c">
-              <template v-slot:label>
-                <v-label>
-                  <span>実行時にIOExceptionが発生する</span>
-                </v-label>
-              </template>
-            </v-radio>
-            <v-radio color="#28a89c">
-              <template v-slot:label>
-                <v-label>
-                  <span>実行時にIOExceptionが発生し、 例外発生！！ と表示される</span>
-                </v-label>
-              </template>
-            </v-radio>
-            <v-radio color="#28a89c">
-              <template v-slot:label>
-                <v-label>
-                  <span>コンパイル、および実行に成功する</span>
+                  <span>{{ choice.label }}</span>
                 </v-label>
               </template>
             </v-radio>
@@ -85,10 +51,52 @@ import { Component, Vue } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
+const MOCK_QUESTION = {
+  sentence: `public class Issue02 {
+
+    public static void main(String[] args) {
+        Issue02 service = new Issue02();
+
+        try{
+            service.newException();
+        }catch(IOException e ){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void newException() {
+        throw new IOException("例外発生！！");
+    }
+}`,
+  question:
+    "このコードをコンパイル、および実行するとどのような結果になりますか。",
+  choices: [
+    {
+      value: 1,
+      label: "コンパイルエラーが発生する"
+    },
+    {
+      value: 2,
+      label: "実行時にIOExceptionが発生する"
+    },
+    {
+      value: 3,
+      label: "実行時にIOExceptionが発生し、 例外発生！！ と表示される"
+    },
+    {
+      value: 4,
+      label: "コンパイル、および実行に成功する"
+    }
+  ]
+};
+
 @Component({
   components: { TestStepper, ConfirmDialog }
 })
 export default class Test extends Vue {
+  question = MOCK_QUESTION;
+
   submit(): void {
     (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
       if (flag) {
@@ -120,7 +128,7 @@ export default class Test extends Vue {
   color: rgba(0, 0, 0, 0.87);
 }
 
-.code {
+.sentence {
   font-family: "Source Code Pro", monospace;
 }
 
