@@ -1,10 +1,10 @@
 <template>
   <div class="px-10">
     <v-data-table :headers="headers" :items="items" dense @click:row="navigateToTest">
-      <template v-slot:item.icon>
+      <template v-slot:item.icon="{item}">
         <td style="height: 35px;">
           <div class="d-flex justify-center align-center">
-            <img src="../../assets/java.svg" width="28px" />
+            <v-icon v-text="item.icon"></v-icon>
           </div>
         </td>
       </template>
@@ -25,19 +25,21 @@ const HEADERS: DataTableHeader[] = [
   { text: "Created By", value: "createdBy" }
 ];
 
+const MOCK_ITEMS = [
+  {
+    icon: "$java",
+    name: "Java",
+    version: "1.0.0",
+    contents: "For java test.",
+    created: "2020/03/21",
+    createdBy: "skill up commity"
+  }
+];
+
 @Component
 export default class TestList extends Vue {
   headers: DataTableHeader[] = HEADERS;
-  items: any[] = [
-    {
-      icon: "../../assets/java.png",
-      name: "Java",
-      version: "1.0.0",
-      contents: "For java test.",
-      created: "2020/03/21",
-      createdBy: "skill up commity"
-    }
-  ];
+  items: any[] = MOCK_ITEMS;
 
   navigateToTest(): void {
     this.$router.push({ name: "test" });
