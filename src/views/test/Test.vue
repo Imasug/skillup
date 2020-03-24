@@ -22,47 +22,36 @@ public class Issue02 {
         throw new IOException("例外発生！！");
     }
 }
-        </pre
-          >
+        </pre>
         </v-col>
         <v-col class="col">
-          <p>
-            このコードをコンパイル、および実行するとどのような結果になりますか。
-          </p>
+          <p>このコードをコンパイル、および実行するとどのような結果になりますか。</p>
           <v-radio-group>
             <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
-                  <span>
-                    コンパイルエラーが発生する
-                  </span>
+                  <span>コンパイルエラーが発生する</span>
                 </v-label>
               </template>
             </v-radio>
             <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
-                  <span>
-                    実行時にIOExceptionが発生する
-                  </span>
+                  <span>実行時にIOExceptionが発生する</span>
                 </v-label>
               </template>
             </v-radio>
             <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
-                  <span>
-                    実行時にIOExceptionが発生し、 例外発生！！ と表示される
-                  </span>
+                  <span>実行時にIOExceptionが発生し、 例外発生！！ と表示される</span>
                 </v-label>
               </template>
             </v-radio>
             <v-radio color="#28a89c">
               <template v-slot:label>
                 <v-label>
-                  <span>
-                    コンパイル、および実行に成功する
-                  </span>
+                  <span>コンパイル、および実行に成功する</span>
                 </v-label>
               </template>
             </v-radio>
@@ -136,7 +125,7 @@ export default class Test extends Vue {
 }
 
 .col {
-  max-width: 500px;
-  min-width: 500px;
+  max-width: 460px;
+  min-width: 460px;
 }
 </style>
