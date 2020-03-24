@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="question">
     <TestStepper />
     <v-container fluid class="mt-2">
       <v-row class="mx-5">
@@ -23,10 +23,10 @@
             </v-radio>
           </v-radio-group>
           <v-row>
-            <v-btn icon>
+            <v-btn icon @click="prev">
               <v-icon>mdi-arrow-left</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon @click="next">
               <v-icon>mdi-arrow-right</v-icon>
             </v-btn>
             <v-btn icon style="margin-left:75px;" @click="submit">
@@ -51,51 +51,27 @@ import { Component, Vue } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
-const MOCK_QUESTION = {
-  sentence: `public class Issue02 {
-
-    public static void main(String[] args) {
-        Issue02 service = new Issue02();
-
-        try{
-            service.newException();
-        }catch(IOException e ){
-            e.printStackTrace();
-        }
-    }
-
-
-    public void newException() {
-        throw new IOException("例外発生！！");
-    }
-}`,
-  question:
-    "このコードをコンパイル、および実行するとどのような結果になりますか。",
-  choices: [
-    {
-      value: 1,
-      label: "コンパイルエラーが発生する"
-    },
-    {
-      value: 2,
-      label: "実行時にIOExceptionが発生する"
-    },
-    {
-      value: 3,
-      label: "実行時にIOExceptionが発生し、 例外発生！！ と表示される"
-    },
-    {
-      value: 4,
-      label: "コンパイル、および実行に成功する"
-    }
-  ]
-};
-
 @Component({
   components: { TestStepper, ConfirmDialog }
 })
 export default class Test extends Vue {
-  question = MOCK_QUESTION;
+  index: number = 0;
+
+  get question() {
+    return this.$store.getters.getQuestionByIndex(this.index);
+  }
+
+  prev(): void {
+    if (this.index > 0) {
+      this.index--;
+    }
+  }
+
+  next(): void {
+    if (this.index < this.$store.getters.questionsLength - 1) {
+      this.index++;
+    }
+  }
 
   submit(): void {
     (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
@@ -118,6 +94,10 @@ export default class Test extends Vue {
 
   navigateToResult(): void {
     this.$router.push({ name: "test-result" });
+  }
+
+  created(): void {
+    this.$store.commit("updateQuestions");
   }
 }
 </script>
