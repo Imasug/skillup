@@ -1,13 +1,15 @@
 <template>
-  <v-container fluid class="py-0">
-    <v-row class="mx-5">
-      <v-data-table :headers="headers" :items="items" dense>
-        <template v-slot:item.icon>
-          <img src="../../assets/java.svg" width="32px" />
-        </template>
-      </v-data-table>
-    </v-row>
-  </v-container>
+  <div class="px-10">
+    <v-data-table :headers="headers" :items="items" dense @click:row="navigateToTest">
+      <template v-slot:item.icon>
+        <td style="height: 35px;">
+          <div class="d-flex justify-center align-center">
+            <img src="../../assets/java.svg" width="28px" />
+          </div>
+        </td>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,12 +17,12 @@ import { Component, Vue } from "vue-property-decorator";
 import { DataTableHeader } from "vuetify";
 
 const HEADERS: DataTableHeader[] = [
-  { text: "", value: "icon", align: "center", sortable: false, width: "75px" },
-  { text: "Name", value: "name", width: "200px" },
-  { text: "Contents", value: "contents", width: "400px" },
-  { text: "Version", value: "version", align: "center", width: "200px" },
-  { text: "Created", value: "created", align: "center", width: "200px" },
-  { text: "Created By", value: "createdBy", width: "200px" }
+  { text: "", value: "icon", sortable: false },
+  { text: "Name", value: "name" },
+  { text: "Contents", value: "contents" },
+  { text: "Version", value: "version" },
+  { text: "Created", value: "created" },
+  { text: "Created By", value: "createdBy" }
 ];
 
 @Component
@@ -36,12 +38,9 @@ export default class TestList extends Vue {
       createdBy: "skill up commity"
     }
   ];
+
+  navigateToTest(): void {
+    this.$router.push({ name: "test" });
+  }
 }
 </script>
-
-<style scoped>
-* {
-  font-size: 13px;
-  color: rgba(0, 0, 0, 0.87);
-}
-</style>
