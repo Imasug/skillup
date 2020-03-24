@@ -13,7 +13,7 @@
               v-for="choice in question.choices"
               :key="choice.value"
               :value="choice.value"
-              color="#28a89c"
+              color="var(--accent1)"
             >
               <template v-slot:label>
                 <v-label>

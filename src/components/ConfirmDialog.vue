@@ -3,13 +3,11 @@
     <v-card>
       <v-card-title>Confirm</v-card-title>
       <v-card-text>
-        <div class="text--primary">
-          {{ message }}
-        </div>
+        <div class="text--primary">{{ message }}</div>
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="#28a89c" text @click.native="agree">OK</v-btn>
+        <v-btn color="var(--accent1)" text @click.native="agree">OK</v-btn>
         <v-btn color="gray" text @click.native="cancel">CANCEL</v-btn>
       </v-card-actions>
     </v-card>

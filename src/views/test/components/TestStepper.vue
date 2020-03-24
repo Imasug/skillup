@@ -2,7 +2,7 @@
   <div class="mx-10" style="min-width: 500px;">
     <v-stepper class="elevation-0">
       <v-stepper-header class="justify-start" style="height: auto;">
-        <v-stepper-step class="pa-0" v-for="n of total" :key="n" color="#28a89c" :step="n"></v-stepper-step>
+        <v-stepper-step class="pa-0" v-for="n of total" :key="n" color="var(--accent1)" :step="n"></v-stepper-step>
       </v-stepper-header>
     </v-stepper>
   </div>
@@ -20,3 +20,4 @@ export default class TestStepper extends Vue {
   }
 }
 </script>
+

@@ -2,7 +2,7 @@
   <v-app-bar
     :clipped-left="$vuetify.breakpoint.lgAndUp"
     app
-    :color="$root.themeColor"
+    color="var(--main)"
     dark
     class="px-2"
   >

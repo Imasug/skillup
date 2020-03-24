@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import "@/assets/css/global.css";
 
 Vue.config.productionTip = false;
 
@@ -11,7 +12,4 @@ new Vue({
   store,
   vuetify,
   render: h => h(App),
-  data: {
-    themeColor: "#1D2939"
-  }
 }).$mount("#app");
