@@ -2,32 +2,36 @@
   <div>
     <TestStepper />
     <v-container fluid>
-      <v-row>
-        <v-col style="max-width: 200px;" class="mt-3 ml-8">
-          <h4>Result</h4>
-          <div class="ml-2">
-            <v-row class="mt-5">
-              <v-col class="py-0">Status:</v-col>
-              <v-col class="py-0">Success</v-col>
-            </v-row>
-            <v-row>
-              <v-col class="py-0">Score:</v-col>
-              <v-col class="py-0">14/20</v-col>
-            </v-row>
-          </div>
+      <v-row class="mx-5">
+        <v-col class="result" style="min-width: 350px;">
+          <v-row>
+            <v-col>
+              <h4>Result</h4>
+              <div class="pa-2">
+                <v-row class="mt-3">
+                  <v-col class="py-0">Status</v-col>
+                  <v-col class="py-0">{{ status }}</v-col>
+                </v-row>
+                <v-row>
+                  <v-col class="py-0">Score</v-col>
+                  <v-col class="py-0">{{ correct }} / {{ total }}</v-col>
+                </v-row>
+              </div>
+            </v-col>
+            <v-col>
+              <div class="pa-2">
+                <v-progress-circular
+                  rotate="-90"
+                  size="100"
+                  :value="calculateAccuracyRate()"
+                  width="10"
+                  color="#28a89c"
+                >{{ calculateAccuracyRate() }} %</v-progress-circular>
+              </div>
+            </v-col>
+          </v-row>
         </v-col>
-        <v-col>
-          <div class="mt-8 ml-8">
-            <v-progress-circular
-              rotate="-90"
-              size="100"
-              value="70"
-              width="10"
-              color="#28a89c"
-              >70 %</v-progress-circular
-            >
-          </div>
-        </v-col>
+        <v-col></v-col>
       </v-row>
     </v-container>
   </div>
@@ -40,5 +44,20 @@ import TestStepper from "@/views/test/components/TestStepper.vue";
 @Component({
   components: { TestStepper }
 })
-export default class TestResult extends Vue {}
+export default class TestResult extends Vue {
+  total: number = 0;
+  correct: number = 0;
+  status: string = "-";
+
+  calculateAccuracyRate(): number {
+    return (this.correct / this.total) * 100;
+  }
+
+  created(): void {
+    // TODO
+    this.total = 20;
+    this.correct = 14;
+    this.status = "Success";
+  }
+}
 </script>
