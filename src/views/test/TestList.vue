@@ -1,7 +1,12 @@
 <template>
   <div class="px-10">
-    <v-data-table :headers="headers" :items="items" dense @click:row="navigateToTest">
-      <template v-slot:item.icon="{item}">
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      dense
+      @click:row="navigateToTest"
+    >
+      <template v-slot:item.icon="{ item }">
         <td style="height: 35px;">
           <div class="d-flex justify-center align-center">
             <v-icon v-text="item.icon"></v-icon>

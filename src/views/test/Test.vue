@@ -18,7 +18,20 @@
             >
               <template v-slot:label>
                 <v-label>
-                  <span>{{ choice.label }}</span>
+                  <span
+                    :class="{
+                      'success--text':
+                        isCheckMode() &&
+                        choice.value === answer &&
+                        choice.value === question.correct,
+                      'error--text':
+                        isCheckMode() &&
+                        choice.value !== answer &&
+                        choice.value === question.correct
+                    }"
+                  >
+                    {{ choice.label }}
+                  </span>
                 </v-label>
               </template>
             </v-radio>
@@ -52,6 +65,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
+// TODO research the best settings of styles
 @Component({
   components: { TestStepper, ConfirmDialog }
 })
