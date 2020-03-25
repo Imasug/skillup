@@ -116,11 +116,11 @@ export default new Vuex.Store({
     getQuestionByIndex: (state) => (index: number) => {
       return state.questions[index];
     },
-    questionsLength: (state) => {
-      return state.questions.length;
-    },
     getAnswerByIndex: (state) => (index: number) => {
       return state.answers[index];
+    },
+    questionsLength: (state) => {
+      return state.questions.length;
     }
   },
   actions: {},

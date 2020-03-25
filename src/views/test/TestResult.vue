@@ -40,6 +40,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
+import _ from "lodash";
 
 @Component({
   components: { TestStepper }
@@ -54,9 +55,15 @@ export default class TestResult extends Vue {
   }
 
   created(): void {
+    this.total = this.$store.getters.questionsLength;
+
+    const corrects = _.map(this.$store.state.questions, "correct");
+    const answers = this.$store.state.answers;
+
+    this.correct =
+      this.total - _.differenceWith(corrects, answers, _.isEqual).length;
+
     // TODO
-    this.total = 20;
-    this.correct = 14;
     this.status = "Success";
   }
 }
