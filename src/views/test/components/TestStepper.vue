@@ -1,19 +1,35 @@
 <template>
-  <div class="mx-10" style="min-width: 500px;">
-    <v-stepper class="elevation-0" :value="index">
-      <v-stepper-header class="justify-start" style="height: auto;">
-        <v-stepper-step class="pa-0" v-for="n of total" :key="n" color="var(--accent1)" :step="n"></v-stepper-step>
-      </v-stepper-header>
-    </v-stepper>
+  <div class="mx-10 mt-3" style="min-width: 500px;">
+    <div class="d-flex flex-wrap justify-start">
+      <div v-for="n of total" :key="n">
+        <v-btn
+          class="mr-1 mb-1"
+          :color="getColor(n)"
+          fab
+          dark
+          width="24px"
+          height="24px"
+          :style="{
+            'box-shadow': '3px 3px 3px rgba(0, 0, 0, 0.2)',
+            transform: isSelected(n) ? 'translateY(-10px)' : ''
+          }"
+          @click="navigateToTest(n - 1)"
+        >
+          <span style="font-size: 12px;">{{ n }}</span>
+        </v-btn>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
+// TODO which is the best compute or method
+// TODO write smart more!
 @Component
 export default class TestStepper extends Vue {
-  get index(): number {
+  get no(): number {
     return this.$store.state.questionIndex + 1;
   }
 
@@ -21,7 +37,46 @@ export default class TestStepper extends Vue {
     return this.$store.getters.questionsLength;
   }
 
+  navigateToTest(index: number) {
+    this.$store.commit("changeQuestionIndex", index);
+    this.$router.push({ name: "test" });
+  }
+
+  isSelected(n: number): boolean {
+    return n === this.no;
+  }
+
+  isAnswered(n: number): boolean {
+    return !!this.$store.getters.getAnswerByIndex(n - 1);
+  }
+
+  isCheckMode(): boolean {
+    return this.$store.getters.isCheckMode;
+  }
+
+  isCorrect(n: number): boolean {
+    return (
+      this.$store.getters.getQuestionByIndex(n - 1).correct ===
+      this.$store.getters.getAnswerByIndex(n - 1)
+    );
+  }
+
+  getColor(n: number) {
+    if (this.isCheckMode()) {
+      if (this.isCorrect(n)) {
+        return "success";
+      } else {
+        return "error";
+      }
+    } else {
+      if (this.isAnswered(n)) {
+        return "var(--accent1)";
+      } else {
+        return "rgba(0, 0, 0, 0.38)";
+      }
+    }
+  }
+
   created(): void {}
 }
 </script>
-

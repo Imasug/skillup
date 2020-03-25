@@ -8,7 +8,7 @@
         </v-col>
         <v-col class="col">
           <p>{{ question.question }}</p>
-          <v-radio-group v-model="answer">
+          <v-radio-group v-model="answer" :disabled="isCheckMode()">
             <v-radio
               v-for="choice in question.choices"
               :key="choice.value"
@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
 
@@ -59,13 +59,19 @@ export default class Test extends Vue {
   question: object = {};
   answer: string = "";
 
+  get index(): number {
+    return this.$store.state.questionIndex;
+  }
+
   // computed didn't work properly. so insteadly use method.
+  @Watch("index")
   setQuestion() {
     this.question = this.$store.getters.getQuestionByIndex(
       this.$store.state.questionIndex
     );
   }
 
+  @Watch("index")
   setAnswer() {
     this.answer = this.$store.getters.getAnswerByIndex(
       this.$store.state.questionIndex
@@ -81,14 +87,10 @@ export default class Test extends Vue {
 
   prev(): void {
     this.$store.commit("decrementQuestionIndex");
-    this.setQuestion();
-    this.setAnswer();
   }
 
   next(): void {
     this.$store.commit("incrementQuestionIndex");
-    this.setQuestion();
-    this.setAnswer();
   }
 
   submit(): void {
@@ -96,6 +98,7 @@ export default class Test extends Vue {
       if (flag) {
         alert("submit");
         this.$router.push({ name: "test-result" });
+        this.$store.commit("changeCheckMode", true);
       }
     });
   }
@@ -112,6 +115,10 @@ export default class Test extends Vue {
 
   navigateToResult(): void {
     this.$router.push({ name: "test-result" });
+  }
+
+  isCheckMode(): boolean {
+    return this.$store.getters.isCheckMode;
   }
 
   created(): void {

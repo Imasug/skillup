@@ -3,7 +3,6 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-
 const MOCK_QUESTION1 = {
   sentence: `public class Issue02 {
 
@@ -78,12 +77,15 @@ const MOCK_QUESTION2 = {
 const MOCK_QUESTIONS = [MOCK_QUESTION1, MOCK_QUESTION2];
 
 // TODO module divide
+// TODO must decide naming policy
+// TODO must get state through getters?
 export default new Vuex.Store({
   state: {
     questionId: "",
     questionIndex: 0,
     questions: [],
-    answers: []
+    answers: [],
+    isCheckMode: false
   },
   mutations: {
     initTest(state, questionId) {
@@ -107,20 +109,29 @@ export default new Vuex.Store({
         state.questionIndex--;
       }
     },
+    changeQuestionIndex(state, index) {
+      state.questionIndex = index;
+    },
     saveAnswer(state, payload) {
       state.answers[payload.index] = payload.value as never;
       console.log(state.answers);
+    },
+    changeCheckMode(state, value) {
+      state.isCheckMode = value;
     }
   },
   getters: {
-    getQuestionByIndex: (state) => (index: number) => {
+    getQuestionByIndex: state => (index: number) => {
       return state.questions[index];
     },
-    getAnswerByIndex: (state) => (index: number) => {
+    getAnswerByIndex: state => (index: number) => {
       return state.answers[index];
     },
-    questionsLength: (state) => {
+    questionsLength: state => {
       return state.questions.length;
+    },
+    isCheckMode: state => {
+      return state.isCheckMode;
     }
   },
   actions: {},
