@@ -75,15 +75,20 @@ const MOCK_QUESTION2 = {
 
 const MOCK_QUESTIONS = [MOCK_QUESTION1, MOCK_QUESTION2];
 
+// TODO module divide
 export default new Vuex.Store({
   state: {
     questionIndex: 0,
-    questions: []
+    questions: [],
+    answers: []
   },
   mutations: {
-    updateQuestions(state) {
-      // TODO
+    initTest(state, id) {
+      // TODO backend access
+      // TODO specify properly type
+      // TODO recover answer
       state.questions = MOCK_QUESTIONS as never[];
+      state.answers = new Array(state.questions.length) as never[];
     },
     incrementQuestionIndex(state) {
       if (state.questionIndex < state.questions.length - 1) {
@@ -95,6 +100,10 @@ export default new Vuex.Store({
         state.questionIndex--;
       }
     },
+    setAnswer(state, payload) {
+      state.answers[payload.index] = payload.value as never;
+      console.log(state.answers);
+    }
   },
   getters: {
     getQuestionByIndex: (state) => (index: number) => {
@@ -102,6 +111,9 @@ export default new Vuex.Store({
     },
     questionsLength: (state) => {
       return state.questions.length;
+    },
+    getAnswerByIndex: (state) => (index: number) => {
+      return state.answers[index];
     }
   },
   actions: {},

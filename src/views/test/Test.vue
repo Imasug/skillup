@@ -8,7 +8,7 @@
         </v-col>
         <v-col class="col">
           <p>{{ question.question }}</p>
-          <v-radio-group>
+          <v-radio-group v-model="answer">
             <v-radio
               v-for="choice in question.choices"
               :key="choice.value"
@@ -55,6 +55,19 @@ import ConfirmDialog from "@/components/ConfirmDialog.vue";
   components: { TestStepper, ConfirmDialog }
 })
 export default class Test extends Vue {
+  get answer(): string {
+    return this.$store.getters.getAnswerByIndex(
+      this.$store.state.questionIndex
+    );
+  }
+
+  set answer(value: string) {
+    this.$store.commit("setAnswer", {
+      index: this.$store.state.questionIndex,
+      value: value
+    });
+  }
+
   get question() {
     return this.$store.getters.getQuestionByIndex(
       this.$store.state.questionIndex
@@ -93,7 +106,8 @@ export default class Test extends Vue {
   }
 
   created(): void {
-    this.$store.commit("updateQuestions");
+    // TODO id
+    this.$store.commit("initTest", "id");
   }
 }
 </script>
