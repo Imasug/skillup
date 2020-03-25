@@ -87,6 +87,9 @@ export default new Vuex.Store({
   },
   mutations: {
     initTest(state, questionId) {
+      if (state.questionId === questionId) {
+        return;
+      }
       // TODO backend access
       // TODO specify properly type
       // TODO recover answer
