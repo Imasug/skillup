@@ -26,22 +26,23 @@ const MOCK_QUESTION1 = {
     "このコードをコンパイル、および実行するとどのような結果になりますか。",
   choices: [
     {
-      value: 1,
+      value: "1",
       label: "コンパイルエラーが発生する"
     },
     {
-      value: 2,
+      value: "2",
       label: "実行時にIOExceptionが発生する"
     },
     {
-      value: 3,
+      value: "3",
       label: "実行時にIOExceptionが発生し、 例外発生！！ と表示される"
     },
     {
-      value: 4,
+      value: "4",
       label: "コンパイル、および実行に成功する"
     }
-  ]
+  ],
+  correct: "1"
 };
 
 const MOCK_QUESTION2 = {
@@ -55,22 +56,23 @@ const MOCK_QUESTION2 = {
     "このコードをコンパイル、および実行するとどのような結果になりますか。",
   choices: [
     {
-      value: 1,
+      value: "1",
       label: "コンパイルエラーが発生する"
     },
     {
-      value: 2,
+      value: "2",
       label: "実行時にIOExceptionが発生する"
     },
     {
-      value: 3,
+      value: "3",
       label: "実行時にIOExceptionが発生し、 例外発生！！ と表示される"
     },
     {
-      value: 4,
+      value: "4",
       label: "コンパイル、および実行に成功する"
     }
-  ]
+  ],
+  correct: "4"
 };
 
 const MOCK_QUESTIONS = [MOCK_QUESTION1, MOCK_QUESTION2];
@@ -78,15 +80,17 @@ const MOCK_QUESTIONS = [MOCK_QUESTION1, MOCK_QUESTION2];
 // TODO module divide
 export default new Vuex.Store({
   state: {
+    questionId: "",
     questionIndex: 0,
     questions: [],
     answers: []
   },
   mutations: {
-    initTest(state, id) {
+    initTest(state, questionId) {
       // TODO backend access
       // TODO specify properly type
       // TODO recover answer
+      state.questionId = questionId;
       state.questions = MOCK_QUESTIONS as never[];
       state.answers = new Array(state.questions.length) as never[];
     },
@@ -100,7 +104,7 @@ export default new Vuex.Store({
         state.questionIndex--;
       }
     },
-    setAnswer(state, payload) {
+    saveAnswer(state, payload) {
       state.answers[payload.index] = payload.value as never;
       console.log(state.answers);
     }

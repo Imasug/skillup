@@ -14,6 +14,7 @@
               :key="choice.value"
               :value="choice.value"
               color="var(--accent1)"
+              @click.native="saveAnswer(choice.value)"
             >
               <template v-slot:label>
                 <v-label>
@@ -55,31 +56,39 @@ import ConfirmDialog from "@/components/ConfirmDialog.vue";
   components: { TestStepper, ConfirmDialog }
 })
 export default class Test extends Vue {
-  get answer(): string {
-    return this.$store.getters.getAnswerByIndex(
+  question: object = {};
+  answer: string = "";
+
+  // computed didn't work properly. so insteadly use method.
+  setQuestion() {
+    this.question = this.$store.getters.getQuestionByIndex(
       this.$store.state.questionIndex
     );
   }
 
-  set answer(value: string) {
-    this.$store.commit("setAnswer", {
+  setAnswer() {
+    this.answer = this.$store.getters.getAnswerByIndex(
+      this.$store.state.questionIndex
+    );
+  }
+
+  saveAnswer(value: string) {
+    this.$store.commit("saveAnswer", {
       index: this.$store.state.questionIndex,
       value: value
     });
   }
 
-  get question() {
-    return this.$store.getters.getQuestionByIndex(
-      this.$store.state.questionIndex
-    );
-  }
-
   prev(): void {
     this.$store.commit("decrementQuestionIndex");
+    this.setQuestion();
+    this.setAnswer();
   }
 
   next(): void {
     this.$store.commit("incrementQuestionIndex");
+    this.setQuestion();
+    this.setAnswer();
   }
 
   submit(): void {
@@ -106,8 +115,10 @@ export default class Test extends Vue {
   }
 
   created(): void {
-    // TODO id
-    this.$store.commit("initTest", "id");
+    // TODO questionId
+    this.$store.commit("initTest", "questionId");
+    this.setQuestion();
+    this.setAnswer();
   }
 }
 </script>
