@@ -3,7 +3,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const MOCK_QUESTION1 = {
+const MOCK_QUESTION = {
   sentence: `public class Issue02 {
 
     public static void main(String[] args) {
@@ -44,37 +44,11 @@ const MOCK_QUESTION1 = {
   correct: "1"
 };
 
-const MOCK_QUESTION2 = {
-  sentence: `public class Test {
+const MOCK_QUESTIONS: any[] = [];
 
-    public static void main(String[] args) {
-      System.out.print("test");
-    }
-}`,
-  question:
-    "このコードをコンパイル、および実行するとどのような結果になりますか。",
-  choices: [
-    {
-      value: "1",
-      label: "コンパイルエラーが発生する"
-    },
-    {
-      value: "2",
-      label: "実行時にIOExceptionが発生する"
-    },
-    {
-      value: "3",
-      label: "実行時にIOExceptionが発生し、 例外発生！！ と表示される"
-    },
-    {
-      value: "4",
-      label: "コンパイル、および実行に成功する"
-    }
-  ],
-  correct: "4"
-};
-
-const MOCK_QUESTIONS = [MOCK_QUESTION1, MOCK_QUESTION2];
+for (let i = 0; i < 10; i++) {
+  MOCK_QUESTIONS.push(MOCK_QUESTION);
+}
 
 // TODO module divide
 // TODO must decide naming policy

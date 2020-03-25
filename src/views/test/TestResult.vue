@@ -26,7 +26,8 @@
                   :value="calculateAccuracyRate()"
                   width="10"
                   color="var(--accent1)"
-                >{{ calculateAccuracyRate() }} %</v-progress-circular>
+                  >{{ calculateAccuracyRate() }} %</v-progress-circular
+                >
               </div>
             </v-col>
           </v-row>
@@ -60,8 +61,11 @@ export default class TestResult extends Vue {
     const corrects = _.map(this.$store.state.questions, "correct");
     const answers = this.$store.state.answers;
 
-    this.correct =
-      this.total - _.differenceWith(corrects, answers, _.isEqual).length;
+    for (let i = 0; i < this.total; i++) {
+      if (corrects[i] === answers[i]) {
+        this.correct++;
+      }
+    }
 
     // TODO
     this.status = "Success";
