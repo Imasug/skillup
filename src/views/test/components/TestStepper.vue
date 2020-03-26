@@ -10,7 +10,7 @@
           width="24px"
           height="24px"
           :style="{
-            'box-shadow': '3px 3px 3px rgba(0, 0, 0, 0.2)',
+            'box-shadow': '3px 3px 3px var(--shadow)',
             transform: isSelected(n) ? 'translateY(-10px)' : ''
           }"
           @click="navigateToTest(n - 1)"
@@ -72,7 +72,7 @@ export default class TestStepper extends Vue {
       if (this.isAnswered(n) || this.isSelected(n)) {
         return "var(--accent1)";
       } else {
-        return "rgba(0, 0, 0, 0.38)";
+        return "var(--gray)";
       }
     }
   }

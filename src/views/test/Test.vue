@@ -164,7 +164,7 @@ export default class Test extends Vue {
 <style scoped>
 * {
   font-size: 13px;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--black);
 }
 
 .sentence {

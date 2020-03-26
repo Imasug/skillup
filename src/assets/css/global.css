@@ -1,4 +1,7 @@
 :root {
     --accent1: #28a89c;
     --main: #1D2939;
+    --gray: rgba(0, 0, 0, 0.38);
+    --black: rgba(0, 0, 0, 0.87);
+    --shadow: rgba(0, 0, 0, 0.2);
 }

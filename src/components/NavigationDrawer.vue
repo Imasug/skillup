@@ -1,13 +1,12 @@
 <template>
   <v-navigation-drawer app :clipped="$vuetify.breakpoint.lgAndUp" v-model="drawer">
-    <!-- TODO Use v-for -->
     <v-list>
-      <v-list-item v-for="menu of menus" :key="menu.title" @click="changeRoute(menu.route)">
+      <v-list-item v-for="(menu,i) of menus" :key="i" @click="changeRoute(menu.route)">
         <v-list-item-icon class="ml-3 mt-4">
           <v-icon class="item-icon">{{ menu.icon }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title :class="['item-title']">{{ menu.title }}</v-list-item-title>
+          <v-list-item-title class="item-title">{{ menu.title }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -17,7 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-const MENUS = [
+const MENUS: Menu[] = [
   {
     icon: "fas fa-tachometer-alt",
     title: "Dashboard",
@@ -42,13 +41,18 @@ const MENUS = [
 
 @Component
 export default class NavigationDrawer extends Vue {
-  menus = MENUS;
-
+  menus: Menu[] = MENUS;
   drawer: boolean = true;
 
   changeRoute(route: string): void {
     this.$router.push({ name: route });
   }
+}
+
+interface Menu {
+  icon: string;
+  title: string;
+  route: string;
 }
 </script>
 
