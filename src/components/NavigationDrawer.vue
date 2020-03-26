@@ -1,10 +1,5 @@
 <template>
-  <v-navigation-drawer
-    app
-    :clipped="$vuetify.breakpoint.lgAndUp"
-    :value="value"
-    @input="$emit('input', $event)"
-  >
+  <v-navigation-drawer app clipped :value="value" @input="$emit('input', $event)">
     <v-list>
       <v-list-item v-for="(menu,i) of menus" :key="i" @click="changeRoute(menu.route)">
         <v-list-item-icon class="ml-3 mt-4">

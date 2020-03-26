@@ -1,9 +1,14 @@
 <template>
-  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="var(--main)" dark class="px-2">
-    <v-app-bar-nav-icon @click.stop="toggle"></v-app-bar-nav-icon>
-    <!-- <div class="mr-3 mt-1">
-      <img src="../assets/rocket.svg" width="36px" />
-    </div>-->
+  <v-app-bar clipped-left app color="var(--main)" dark class="px-2">
+    <template v-if="$vuetify.breakpoint.lgAndUp">
+      <div class="mr-5 mt-1">
+        <img src="../assets/rocket.svg" width="36px" />
+      </div>
+    </template>
+    <template v-else>
+      <v-app-bar-nav-icon @click.stop="toggle"></v-app-bar-nav-icon>
+    </template>
+
     <v-toolbar-title>SkillUp</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn icon class="mr-2">

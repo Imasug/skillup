@@ -3,10 +3,14 @@
     <TestStepper />
     <v-container fluid class="mt-2">
       <v-row class="mx-5">
-        <v-col class="col">
+        <v-col
+          cols="12"
+          md="6"
+          :style="{ 'max-width': $vuetify.breakpoint.mdAndUp ? '460px' : '' }"
+        >
           <pre class="sentence">{{ question.sentence }}</pre>
         </v-col>
-        <v-col class="col">
+        <v-col cols="12" md="6">
           <p>{{ question.question }}</p>
           <v-radio-group v-model="answer" :disabled="isCheckMode()">
             <v-radio
@@ -19,8 +23,12 @@
               <template v-slot:label>
                 <v-label>
                   <span
-                    :style="{'font-weight': isCheckMode() &&
-                        choice.value === question.correct ? '600' : ''}"
+                    :style="{
+                      'font-weight':
+                        isCheckMode() && choice.value === question.correct
+                          ? '600'
+                          : ''
+                    }"
                     :class="{
                       'success--text':
                         isCheckMode() &&
@@ -31,7 +39,8 @@
                         choice.value !== answer &&
                         choice.value === question.correct
                     }"
-                  >{{ choice.label }}</span>
+                    >{{ choice.label }}</span
+                  >
                 </v-label>
               </template>
             </v-radio>
@@ -169,9 +178,5 @@ export default class Test extends Vue {
 
 .sentence {
   font-family: "Source Code Pro", monospace;
-}
-
-.col {
-  min-width: 460px;
 }
 </style>
