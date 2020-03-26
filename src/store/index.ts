@@ -92,6 +92,9 @@ export default new Vuex.Store({
     },
     changeCheckMode(state, value) {
       state.isCheckMode = value;
+    },
+    clearAnswer(state) {
+      state.answers = new Array(state.questions.length) as never[];
     }
   },
   getters: {

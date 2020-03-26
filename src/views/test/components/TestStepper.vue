@@ -69,7 +69,7 @@ export default class TestStepper extends Vue {
         return "error";
       }
     } else {
-      if (this.isAnswered(n)) {
+      if (this.isAnswered(n) || this.isSelected(n)) {
         return "var(--accent1)";
       } else {
         return "rgba(0, 0, 0, 0.38)";

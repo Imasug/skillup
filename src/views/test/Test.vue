@@ -117,8 +117,8 @@ export default class Test extends Vue {
     (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
       if (flag) {
         alert("submit");
-        this.$router.push({ name: "test-result" });
         this.$store.commit("changeCheckMode", true);
+        this.$router.push({ name: "test-result" });
       }
     });
   }
@@ -128,7 +128,10 @@ export default class Test extends Vue {
       .open("リセットしますか？")
       .then((flag: boolean) => {
         if (flag) {
-          alert("reset");
+          this.$store.commit("changeCheckMode", false);
+          this.$store.commit("clearAnswer");
+          this.$store.commit("changeQuestionIndex", 0);
+          this.initTest("questionId");
         }
       });
   }
@@ -141,11 +144,15 @@ export default class Test extends Vue {
     return this.$store.getters.isCheckMode;
   }
 
-  created(): void {
-    // TODO questionId
-    this.$store.commit("initTest", "questionId");
+  initTest(questionId: string): void {
+    this.$store.commit("initTest", questionId);
     this.setQuestion();
     this.setAnswer();
+  }
+
+  created(): void {
+    // TODO questionId
+    this.initTest("questionId");
   }
 }
 </script>
