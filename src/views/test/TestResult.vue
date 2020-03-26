@@ -8,10 +8,10 @@
             <v-col>
               <h4>Result</h4>
               <div class="pa-2">
-                <v-row class="mt-3">
+                <!-- <v-row class="mt-3">
                   <v-col class="py-0">Status</v-col>
                   <v-col class="py-0">{{ status }}</v-col>
-                </v-row>
+                </v-row> -->
                 <v-row>
                   <v-col class="py-0">Score</v-col>
                   <v-col class="py-0">{{ correct }} / {{ total }}</v-col>

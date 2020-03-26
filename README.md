@@ -35,15 +35,18 @@ clasp create --rootDir dist --type webapp
 npm run deploy
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Vue Style Guide
+- See [Style Guilde](https://jp.vuejs.org/v2/style-guide/index.html).
+
+### Vue CLI
+- See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Avatar
-See [Avataaars generator](https://getavataaars.com).
+- See [Avataaars generator](https://getavataaars.com).
 
 ### Icon
-See [FLAT ICON DESIGN](http://flat-icon-design.com).
-See [iconscout](https://iconscout.com/).
+- See [FLAT ICON DESIGN](http://flat-icon-design.com).
+- See [iconscout](https://iconscout.com/).
 
 ### Font
-See [Google Fonts](https://fonts.google.com/).
+- See [Google Fonts](https://fonts.google.com/).

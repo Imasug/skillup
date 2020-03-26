@@ -19,6 +19,8 @@
               <template v-slot:label>
                 <v-label>
                   <span
+                    :style="{'font-weight': isCheckMode() &&
+                        choice.value === question.correct ? '600' : ''}"
                     :class="{
                       'success--text':
                         isCheckMode() &&
@@ -29,9 +31,7 @@
                         choice.value !== answer &&
                         choice.value === question.correct
                     }"
-                  >
-                    {{ choice.label }}
-                  </span>
+                  >{{ choice.label }}</span>
                 </v-label>
               </template>
             </v-radio>
@@ -43,15 +43,21 @@
             <v-btn icon @click="next">
               <v-icon>mdi-arrow-right</v-icon>
             </v-btn>
-            <v-btn icon style="margin-left:75px;" @click="submit">
-              <v-icon>mdi-send</v-icon>
-            </v-btn>
-            <v-btn icon @click="reset">
-              <v-icon>mdi-undo-variant</v-icon>
-            </v-btn>
-            <v-btn icon @click="navigateToResult">
-              <v-icon>mdi-chart-donut</v-icon>
-            </v-btn>
+            <div style="margin-left:75px;">
+              <div v-if="!isCheckMode()">
+                <v-btn icon @click="submit">
+                  <v-icon>mdi-send</v-icon>
+                </v-btn>
+              </div>
+              <div v-else>
+                <v-btn icon @click="reset">
+                  <v-icon>mdi-undo-variant</v-icon>
+                </v-btn>
+                <v-btn icon @click="navigateToResult">
+                  <v-icon>mdi-chart-donut</v-icon>
+                </v-btn>
+              </div>
+            </div>
           </v-row>
         </v-col>
       </v-row>

@@ -19,5 +19,9 @@ export default class Breadcrumbs extends Vue {
   updateBreadcrumbs(): void {
     this.items = this.$route.meta.breadcrumbs;
   }
+
+  created(): void {
+    this.updateBreadcrumbs();
+  }
 }
 </script>
