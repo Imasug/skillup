@@ -1,15 +1,10 @@
 <template>
-  <v-app-bar
-    :clipped-left="$vuetify.breakpoint.lgAndUp"
-    app
-    color="var(--main)"
-    dark
-    class="px-2"
-  >
-    <div class="mr-3 mt-1">
+  <v-app-bar :clipped-left="$vuetify.breakpoint.lgAndUp" app color="var(--main)" dark class="px-2">
+    <v-app-bar-nav-icon @click.stop="toggle"></v-app-bar-nav-icon>
+    <!-- <div class="mr-3 mt-1">
       <img src="../assets/rocket.svg" width="36px" />
-    </div>
-    <v-toolbar-title class="ml-3">SkillUp</v-toolbar-title>
+    </div>-->
+    <v-toolbar-title>SkillUp</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-btn icon class="mr-2">
       <v-icon>mdi-cart</v-icon>
@@ -27,5 +22,9 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Toolbar extends Vue {}
+export default class Toolbar extends Vue {
+  toggle(): void {
+    this.$emit("toggle");
+  }
+}
 </script>

@@ -2,8 +2,8 @@
   <div>
     <v-app>
       <div>
-        <Toolbar />
-        <NavigationDrawer />
+        <Toolbar @toggle="drawer = !drawer" />
+        <NavigationDrawer v-model="drawer" />
         <v-content>
           <Breadcrumbs />
           <router-view />
@@ -22,5 +22,7 @@ import Breadcrumbs from "@/components/Breadcrumbs.vue";
 @Component({
   components: { Toolbar, NavigationDrawer, Breadcrumbs }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  drawer: boolean = true;
+}
 </script>

@@ -172,7 +172,6 @@ export default class Test extends Vue {
 }
 
 .col {
-  max-width: 460px;
   min-width: 460px;
 }
 </style>

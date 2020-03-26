@@ -1,5 +1,10 @@
 <template>
-  <v-navigation-drawer app :clipped="$vuetify.breakpoint.lgAndUp" v-model="drawer">
+  <v-navigation-drawer
+    app
+    :clipped="$vuetify.breakpoint.lgAndUp"
+    :value="value"
+    @input="$emit('input', $event)"
+  >
     <v-list>
       <v-list-item v-for="(menu,i) of menus" :key="i" @click="changeRoute(menu.route)">
         <v-list-item-icon class="ml-3 mt-4">
@@ -14,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 const MENUS: Menu[] = [
   {
@@ -42,7 +47,9 @@ const MENUS: Menu[] = [
 @Component
 export default class NavigationDrawer extends Vue {
   menus: Menu[] = MENUS;
-  drawer: boolean = true;
+
+  @Prop(Boolean)
+  value: boolean = true;
 
   changeRoute(route: string): void {
     this.$router.push({ name: route });
