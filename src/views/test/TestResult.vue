@@ -11,10 +11,15 @@
                 <!-- <v-row class="mt-3">
                   <v-col class="py-0">Status</v-col>
                   <v-col class="py-0">{{ status }}</v-col>
-                </v-row> -->
+                </v-row>-->
                 <v-row>
                   <v-col class="py-0">Score</v-col>
                   <v-col class="py-0">{{ correct }} / {{ total }}</v-col>
+                </v-row>
+                <v-row class="mt-5">
+                  <v-btn icon @click="back">
+                    <v-icon>mdi-undo-variant</v-icon>
+                  </v-btn>
                 </v-row>
               </div>
             </v-col>
@@ -26,8 +31,7 @@
                   :value="calculateAccuracyRate()"
                   width="10"
                   color="var(--accent1)"
-                  >{{ calculateAccuracyRate() }} %</v-progress-circular
-                >
+                >{{ calculateAccuracyRate() }} %</v-progress-circular>
               </div>
             </v-col>
           </v-row>
@@ -53,6 +57,10 @@ export default class TestResult extends Vue {
 
   calculateAccuracyRate(): number {
     return (this.correct / this.total) * 100;
+  }
+
+  back(): void {
+    this.$router.go(-1);
   }
 
   created(): void {

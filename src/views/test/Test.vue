@@ -51,7 +51,7 @@
               </div>
               <div v-else>
                 <v-btn icon @click="reset">
-                  <v-icon>mdi-undo-variant</v-icon>
+                  <v-icon>mdi-sync</v-icon>
                 </v-btn>
                 <v-btn icon @click="navigateToResult">
                   <v-icon>mdi-chart-donut</v-icon>
@@ -121,6 +121,10 @@ export default class Test extends Vue {
         this.$router.push({ name: "test-result" });
       }
     });
+  }
+
+  back(): void {
+    this.$router.go(-1);
   }
 
   reset(): void {
