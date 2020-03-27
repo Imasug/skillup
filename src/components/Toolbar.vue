@@ -2,7 +2,7 @@
   <v-app-bar clipped-left app color="var(--main)" dark class="px-2">
     <template v-if="$vuetify.breakpoint.lgAndUp">
       <div class="mr-5 mt-1">
-        <img src="../assets/rocket.svg" width="36px" />
+        <img src="../assets/img/rocket.svg" width="36px" />
       </div>
     </template>
     <template v-else>
