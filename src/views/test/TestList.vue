@@ -20,6 +20,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { DataTableHeader } from "vuetify";
+import TestService from "../../domains/test/test-service";
 
 const HEADERS: DataTableHeader[] = [
   { text: "", value: "icon", sortable: false },
@@ -44,10 +45,14 @@ const MOCK_ITEMS = [
 @Component
 export default class TestList extends Vue {
   headers: DataTableHeader[] = HEADERS;
-  items: any[] = MOCK_ITEMS;
+  items: any[] = [];
 
   navigateToTest(): void {
     this.$router.push({ name: "test" });
+  }
+
+  created() {
+    TestService.getTestList(data => (this.items = data));
   }
 }
 </script>

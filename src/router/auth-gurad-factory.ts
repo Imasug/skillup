@@ -2,7 +2,7 @@ import { google } from "googleapis";
 import store from "@/store";
 
 // TODO
-const SCOPES = ["https://www.googleapis.com/auth/blogger"];
+const SCOPES = ["https://www.googleapis.com/auth/documents"];
 
 export default class AuthGuardFactory {
   static create() {
