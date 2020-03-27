@@ -3,8 +3,14 @@ const CopyPlugin = require("copy-webpack-plugin");
 const path = require("path");
 
 module.exports = {
+  devServer: {
+    port: 8081
+  },
   transpileDependencies: ["vuetify"],
   chainWebpack: config => {
+    config.resolve.extensions.prepend(".js");
+    config.resolve.alias.set("fs", path.resolve(__dirname, "src/mock-fs.js"));
+
     config.when(process.env.NODE_ENV === "production", config => {
       // It's necessary for google apps script to embed assets in html.
       // Some steps below are to accomplish this purpose.

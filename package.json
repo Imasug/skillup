@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.149",
     "core-js": "^3.4.4",
+    "googleapis": "^48.0.0",
     "lodash": "^4.17.15",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
