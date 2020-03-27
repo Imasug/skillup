@@ -59,6 +59,7 @@ export default new Vuex.Store({
     questionIndex: 0,
     questions: [],
     answers: [],
+    auth: null,
     isCheckMode: false
   },
   mutations: {
@@ -95,6 +96,9 @@ export default new Vuex.Store({
     },
     clearAnswer(state) {
       state.answers = new Array(state.questions.length) as never[];
+    },
+    saveAuth(state, auth) {
+      state.auth = auth;
     }
   },
   getters: {
