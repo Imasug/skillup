@@ -31,7 +31,8 @@
                   :value="calculateAccuracyRate()"
                   width="10"
                   color="var(--accent1)"
-                >{{ calculateAccuracyRate() }} %</v-progress-circular>
+                  >{{ calculateAccuracyRate() }} %</v-progress-circular
+                >
               </div>
             </v-col>
           </v-row>

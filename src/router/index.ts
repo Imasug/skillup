@@ -3,8 +3,8 @@ import TestList from "@/views/test/TestList.vue";
 import TestResult from "@/views/test/TestResult.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import AuthGuardFactory from '@/router/auth-gurad-factory';
-import store from '@/store';
+import AuthGuardFactory from "@/router/auth-gurad-factory";
+import store from "@/store";
 
 Vue.use(VueRouter);
 
