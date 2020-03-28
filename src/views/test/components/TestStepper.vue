@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-10 mt-3" style="min-width: 500px;">
+  <div class="mx-10 mt-3" style="min-width: 300px;">
     <div class="d-flex flex-wrap justify-start">
       <div v-for="n of total" :key="n">
         <v-btn

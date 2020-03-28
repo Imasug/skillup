@@ -57,7 +57,7 @@ export default class TestResult extends Vue {
   status: string = "-";
 
   calculateAccuracyRate(): number {
-    return (this.correct / this.total) * 100;
+    return Math.floor((this.correct / this.total) * 100);
   }
 
   back(): void {
