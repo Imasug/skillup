@@ -28,14 +28,16 @@ export default class GapiScriptService {
           parameters: requestBody.parameters
         }
       })
-    ).subscribe(data => {
-      const response = data.data.response;
-      if (response) {
-        callback(response.result);
-      } else {
-        // TODO error handling
-        throw new Error();
-      }
-    });
+    )
+      .pipe(tap(console.log))
+      .subscribe(data => {
+        const response = data.data.response;
+        if (response) {
+          callback(response.result);
+        } else {
+          // TODO error handling
+          throw new Error();
+        }
+      });
   }
 }

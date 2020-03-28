@@ -79,37 +79,27 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import TestService from "../../domains/test/test-service";
 
 // TODO research the best settings of styles
 @Component({
   components: { TestStepper, ConfirmDialog }
 })
 export default class Test extends Vue {
-  question: object = {};
+  question: object | null = null;
   answer: string = "";
 
   get index(): number {
     return this.$store.state.questionIndex;
   }
 
-  // computed didn't work properly. so insteadly use method.
-  @Watch("index")
-  setQuestion() {
-    this.question = this.$store.getters.getQuestionByIndex(
-      this.$store.state.questionIndex
-    );
-  }
-
-  @Watch("index")
-  setAnswer() {
-    this.answer = this.$store.getters.getAnswerByIndex(
-      this.$store.state.questionIndex
-    );
+  isCheckMode(): boolean {
+    return this.$store.getters.isCheckMode;
   }
 
   saveAnswer(value: string) {
     this.$store.commit("saveAnswer", {
-      index: this.$store.state.questionIndex,
+      index: this.index,
       value: value
     });
   }
@@ -122,6 +112,10 @@ export default class Test extends Vue {
     this.$store.commit("incrementQuestionIndex");
   }
 
+  back(): void {
+    this.$router.go(-1);
+  }
+
   submit(): void {
     (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
       if (flag) {
@@ -132,19 +126,14 @@ export default class Test extends Vue {
     });
   }
 
-  back(): void {
-    this.$router.go(-1);
-  }
-
   reset(): void {
     (this.$refs.confirm as any)
       .open("リセットしますか？")
       .then((flag: boolean) => {
         if (flag) {
           this.$store.commit("changeCheckMode", false);
-          this.$store.commit("clearAnswer");
+          this.$store.commit("clearAnswers");
           this.$store.commit("changeQuestionIndex", 0);
-          this.initTest("questionId");
         }
       });
   }
@@ -153,19 +142,33 @@ export default class Test extends Vue {
     this.$router.push({ name: "test-result" });
   }
 
-  isCheckMode(): boolean {
-    return this.$store.getters.isCheckMode;
+  setQuestion() {
+    this.question = this.$store.getters.getQuestionByIndex(this.index);
   }
 
-  initTest(questionId: string): void {
-    this.$store.commit("initTest", questionId);
+  setAnswer() {
+    this.answer = this.$store.getters.getAnswerByIndex(this.index);
+  }
+
+  @Watch("index")
+  init(): void {
     this.setQuestion();
     this.setAnswer();
   }
 
   created(): void {
     // TODO questionId
-    this.initTest("questionId");
+    const questionId = "questionId";
+    if (this.$store.state.questionId !== questionId) {
+      TestService.getTests(questions => {
+        this.$store.commit("saveQuestionId", questionId);
+        this.$store.commit("saveQuestions", questions);
+        this.$store.commit("clearAnswers");
+        this.init();
+      });
+    } else {
+      this.init();
+    }
   }
 }
 </script>
