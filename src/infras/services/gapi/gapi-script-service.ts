@@ -24,6 +24,7 @@ export default class GapiScriptService {
         scriptId: scriptId,
         auth: auth,
         requestBody: {
+          devMode: process.env.NODE_ENV === "development",
           function: requestBody.function,
           parameters: requestBody.parameters
         }
