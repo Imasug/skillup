@@ -11,4 +11,8 @@ export default class TestService {
   static getTests(callback: (data: any) => void) {
     GapiScriptService.run(SCRIPT_ID, { function: "getTests" }, callback);
   }
+
+  static submit(callback: () => void) {
+    GapiScriptService.run(SCRIPT_ID, { function: "submit" }, callback);
+  }
 }
