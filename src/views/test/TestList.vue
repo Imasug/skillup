@@ -9,7 +9,7 @@
       <template v-slot:item.icon="{ item }">
         <td style="height: 35px;">
           <div class="d-flex justify-center align-center">
-            <v-icon v-text="item.icon"></v-icon>
+            <v-icon>{{ getIconName(item.name) }}</v-icon>
           </div>
         </td>
       </template>
@@ -23,32 +23,34 @@ import { DataTableHeader } from "vuetify";
 import TestService from "../../domains/test/test-service";
 
 const HEADERS: DataTableHeader[] = [
-  { text: "", value: "icon", sortable: false },
-  { text: "Name", value: "name" },
-  { text: "Contents", value: "contents" },
-  { text: "Version", value: "version" },
-  { text: "Created", value: "created" },
-  { text: "Created By", value: "createdBy" }
+  { text: "", value: "icon", width: "50px", sortable: false },
+  { text: "Name", value: "name", width: "200px" },
+  { text: "Description", value: "description" },
+  { text: "Owner", value: "owner", width: "150px" },
+  { text: "Updated", value: "updated", width: "150px" }
 ];
 
-const MOCK_ITEMS = [
-  {
-    icon: "$java",
-    name: "Java",
-    version: "1.0.0",
-    contents: "For java test.",
-    created: "2020/03/21",
-    createdBy: "skill up commity"
-  }
-];
+const JAVA_REGEX = new RegExp(".*java.*", "i");
 
 @Component
 export default class TestList extends Vue {
   headers: DataTableHeader[] = HEADERS;
   items: any[] = [];
 
-  navigateToTest(): void {
-    this.$router.push({ name: "test" });
+  navigateToTest(data: any): void {
+    this.$router.push({ name: "test", params: { testName: data.name } });
+  }
+
+  getIconName(name: string): string {
+    let iconName = "";
+    switch (true) {
+      case JAVA_REGEX.test(name):
+        iconName = "$java";
+        break;
+      default:
+        break;
+    }
+    return iconName;
   }
 
   created() {

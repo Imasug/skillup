@@ -5,13 +5,13 @@
       <v-row class="mx-5">
         <v-col
           cols="12"
-          md="6"
+          md="5"
           :style="{ 'max-width': $vuetify.breakpoint.mdAndUp ? '460px' : '' }"
         >
           <pre class="sentence">{{ question.sentence }}</pre>
         </v-col>
-        <v-col cols="12" md="6">
-          <p>{{ question.question }}</p>
+        <v-col cols="12" md="7">
+          <p style="height: 30px;">{{ question.question }}</p>
           <v-radio-group v-model="answer" :disabled="isCheckMode()">
             <v-radio
               v-for="choice in question.choices"
@@ -157,13 +157,14 @@ export default class Test extends Vue {
   }
 
   created(): void {
-    // TODO questionId
-    const questionId = "questionId";
-    if (this.$store.state.questionId !== questionId) {
-      TestService.getTests(questions => {
-        this.$store.commit("saveQuestionId", questionId);
+    const testName = this.$route.params.testName;
+    this.$route.meta.breadcrumbs = [{ text: "Test" }, { text: testName }];
+    if (this.$store.state.testName !== testName) {
+      TestService.getTests(testName, questions => {
+        this.$store.commit("saveTestName", testName);
         this.$store.commit("saveQuestions", questions);
         this.$store.commit("clearAnswers");
+        this.$store.commit("changeQuestionIndex", 0);
         this.init();
       });
     } else {
@@ -175,7 +176,7 @@ export default class Test extends Vue {
 
 <style scoped>
 * {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--black);
 }
 

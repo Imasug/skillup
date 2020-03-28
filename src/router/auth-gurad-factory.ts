@@ -2,7 +2,10 @@ import { google } from "googleapis";
 import store from "@/store";
 
 // TODO
-const SCOPES = ["https://www.googleapis.com/auth/documents"];
+const SCOPES = [
+  "https://www.googleapis.com/auth/drive.readonly",
+  "https://www.googleapis.com/auth/spreadsheets"
+];
 
 export default class AuthGuardFactory {
   static create() {

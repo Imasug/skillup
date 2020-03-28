@@ -31,12 +31,10 @@ const routes = [
     }
   },
   {
-    path: "/test",
+    path: "/test/:testName",
     name: "test",
     component: Test,
-    meta: {
-      breadcrumbs: [{ text: "Test" }, { text: "Java" }]
-    }
+    meta: {}
   },
   {
     path: "/test-result",

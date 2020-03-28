@@ -8,7 +8,7 @@ Vue.use(Vuex);
 // TODO must get state through getters?
 export default new Vuex.Store({
   state: {
-    questionId: "",
+    testName: "",
     questionIndex: 0,
     questions: [],
     answers: [],
@@ -16,9 +16,9 @@ export default new Vuex.Store({
     isCheckMode: false
   },
   mutations: {
-    // questionId
-    saveQuestionId(state, questionId) {
-      state.questionId = questionId;
+    // testName
+    saveTestName(state, testName) {
+      state.testName = testName;
     },
     // questionIndex
     incrementQuestionIndex(state) {
