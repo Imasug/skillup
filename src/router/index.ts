@@ -3,27 +3,13 @@ import TestList from "@/views/test/TestList.vue";
 import TestResult from "@/views/test/TestResult.vue";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import AuthGuardFactory from "@/router/auth-gurad-factory";
-import store from "@/store";
 
 Vue.use(VueRouter);
 
 const routes = [
+  // TODO
   {
     path: "/",
-    name: "auth",
-    beforeEnter: AuthGuardFactory.create(),
-    meta: {
-      isPublic: true
-    }
-  },
-  {
-    path: "/home",
-    name: "home",
-    redirect: "test-list"
-  },
-  {
-    path: "/test-list",
     name: "test-list",
     component: TestList,
     meta: {
@@ -50,14 +36,6 @@ const router = new VueRouter({
   mode: "history",
   // base: process.env.BASE_URL,
   routes
-});
-
-router.beforeEach((to, from, next) => {
-  if (to.matched.some(route => route.meta.isPublic) || store.state.auth) {
-    next();
-  } else {
-    next({ name: "auth" });
-  }
 });
 
 export default router;

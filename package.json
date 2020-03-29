@@ -12,7 +12,7 @@
   "dependencies": {
     "@types/lodash": "^4.14.149",
     "core-js": "^3.4.4",
-    "googleapis": "^48.0.0",
+    "little-loader": "^0.2.0",
     "lodash": "^4.17.15",
     "rxjs": "^6.5.4",
     "vue": "^2.6.10",
@@ -26,8 +26,10 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
     "@types/chai": "^4.2.8",
+    "@types/gapi": "0.0.39",
     "@types/google-apps-script": "^1.0.11",
     "@types/google.script.client-side": "^0.1.0",
+    "@types/little-loader": "^0.2.0",
     "@types/mocha": "^5.2.4",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",

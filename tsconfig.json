@@ -17,7 +17,9 @@
       "mocha",
       "chai",
       "lodash",
-      "google.script.client-side"
+      "google.script.client-side",
+      "little-loader",
+      "gapi"
     ],
     "paths": {
       "@/*": [
