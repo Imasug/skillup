@@ -1,8 +1,16 @@
 <template>
-  <div v-if="question">
-    <TestStepper />
+  <div
+    v-if="question"
+    :style="{ zoom: $vuetify.breakpoint.xsOnly ? '75%' : '' }"
+  >
+    <TestStepper v-if="!$vuetify.breakpoint.xsOnly" />
     <v-container fluid class="mt-2">
-      <v-row class="mx-5">
+      <v-row
+        :class="{
+          'mx-5': !$vuetify.breakpoint.xsOnly,
+          'mx-1': $vuetify.breakpoint.xsOnly
+        }"
+      >
         <v-col
           cols="12"
           md="5"
@@ -17,6 +25,7 @@
               v-for="choice in question.choices"
               :key="choice.value"
               :value="choice.value"
+              :style="{ height: $vuetify.breakpoint.xsOnly ? '32px' : '' }"
               color="var(--accent1)"
               @click.native="saveAnswer(choice.value)"
             >

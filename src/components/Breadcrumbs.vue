@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-4 mt-1">
+  <div class="mx-4 mt-1" v-if="!$vuetify.breakpoint.xsOnly">
     <v-breadcrumbs :items="items"></v-breadcrumbs>
   </div>
 </template>

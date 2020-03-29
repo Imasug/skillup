@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TestStepper />
+    <TestStepper :class="{ 'mt-10': $vuetify.breakpoint.xsOnly }" />
     <v-container fluid>
       <v-row class="mx-5">
         <v-col class="result" style="min-width: 350px;">
