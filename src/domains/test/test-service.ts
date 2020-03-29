@@ -1,4 +1,4 @@
-import GapiScriptService from "@/infras/services/gapi/gapi-script-service";
+import GapiScriptService from "@/infras/services/google/gapi-script-service";
 
 const SCRIPT_ID: string =
   "1WpUQ1cvJkDvdJKNPnGKpRxKeK4jLUdbHgghHJoHuAaxPA50OBcwPo1fR";

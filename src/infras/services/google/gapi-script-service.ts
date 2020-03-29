@@ -24,13 +24,16 @@ export default class GapiScriptService {
         scriptId: scriptId,
         auth: auth,
         requestBody: {
-          devMode: process.env.NODE_ENV === "development",
+          // devMode: process.env.NODE_ENV === "development",
+          devMode: true,
           function: requestBody.function,
           parameters: requestBody.parameters
         }
       })
     )
-      .pipe(tap(console.log))
+      .pipe
+      // tap(console.log)
+      ()
       .subscribe(data => {
         const response = data.data.response;
         if (response) {

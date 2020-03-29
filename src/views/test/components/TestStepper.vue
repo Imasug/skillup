@@ -39,7 +39,10 @@ export default class TestStepper extends Vue {
 
   navigateToTest(index: number) {
     this.$store.commit("changeQuestionIndex", index);
-    this.$router.push({ name: "test" });
+    this.$router.push({
+      name: "test",
+      params: { testName: this.$store.state.testName }
+    });
   }
 
   isSelected(n: number): boolean {

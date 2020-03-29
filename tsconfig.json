@@ -16,7 +16,8 @@
       "vuetify",
       "mocha",
       "chai",
-      "lodash"
+      "lodash",
+      "google.script.client-side"
     ],
     "paths": {
       "@/*": [
