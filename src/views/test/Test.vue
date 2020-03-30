@@ -2,7 +2,7 @@
   <div v-if="question">
     <TestStepper />
     <v-container fluid class="mt-2">
-      <v-row class="mx-5">
+      <v-row class="mx-6">
         <v-col
           cols="12"
           md="5"
@@ -10,7 +10,7 @@
         >
           <pre class="sentence">{{ question.sentence }}</pre>
         </v-col>
-        <v-col cols="12" md="7">
+        <v-col cols="12" md="6">
           <p style="height: 30px;">{{ question.question }}</p>
           <v-radio-group v-model="answer" :disabled="isCheckMode()">
             <v-radio
@@ -39,8 +39,7 @@
                         choice.value !== answer &&
                         choice.value === question.correct
                     }"
-                    >{{ choice.label }}</span
-                  >
+                  >{{ choice.label }}</span>
                 </v-label>
               </template>
             </v-radio>
@@ -119,9 +118,11 @@ export default class Test extends Vue {
   submit(): void {
     (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
       if (flag) {
-        TestService.submit(() => alert("submit"));
-        this.$store.commit("changeCheckMode", true);
-        this.$router.push({ name: "test-result" });
+        TestService.submit(() => {
+          alert("submit");
+          this.$store.commit("changeCheckMode", true);
+          this.$router.push({ name: "test-result" });
+        });
       }
     });
   }
@@ -134,6 +135,7 @@ export default class Test extends Vue {
           this.$store.commit("changeCheckMode", false);
           this.$store.commit("clearAnswers");
           this.$store.commit("changeQuestionIndex", 0);
+          this.init();
         }
       });
   }
