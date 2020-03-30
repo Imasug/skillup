@@ -19,7 +19,8 @@
       "lodash",
       "google.script.client-side",
       "little-loader",
-      "gapi"
+      "gapi",
+      "vue-loading"
     ],
     "paths": {
       "@/*": [
@@ -39,7 +40,6 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "types/**/*.ts",
   ],
   "exclude": [
     "node_modules"
