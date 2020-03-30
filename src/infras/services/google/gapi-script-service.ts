@@ -1,6 +1,7 @@
 import load from "little-loader";
 import { bindCallback } from "rxjs";
 import { map, mergeMap } from "rxjs/operators";
+import { loading } from "@/plugins/vue-loading";
 
 // TODO
 const SCOPES = [
@@ -23,6 +24,7 @@ export default class GapiScriptService {
     },
     callback: (data: any) => void
   ) {
+    (loading as any).show();
     bindCallback(load)("https://apis.google.com/js/api.js")
       .pipe(
         mergeMap(() => bindCallback(gapi.load)("client:auth2")),
@@ -47,6 +49,7 @@ export default class GapiScriptService {
             const data = result.response.result;
             callback(data);
           }
+          (loading as any).hide();
         })
       )
       .subscribe();
