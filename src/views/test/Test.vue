@@ -39,7 +39,8 @@
                         choice.value !== answer &&
                         choice.value === question.correct
                     }"
-                  >{{ choice.label }}</span>
+                    >{{ choice.label }}</span
+                  >
                 </v-label>
               </template>
             </v-radio>
@@ -119,7 +120,6 @@ export default class Test extends Vue {
     (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
       if (flag) {
         TestService.submit(() => {
-          alert("submit");
           this.$store.commit("changeCheckMode", true);
           this.$router.push({ name: "test-result" });
         });
@@ -160,9 +160,11 @@ export default class Test extends Vue {
 
   created(): void {
     const testName = this.$route.params.testName;
+    const id = this.$route.query.id;
     this.$route.meta.breadcrumbs = [{ text: "Test" }, { text: testName }];
+    // TODO check id
     if (this.$store.state.testName !== testName) {
-      TestService.getTests(testName, questions => {
+      TestService.getTests(id as string, questions => {
         this.$store.commit("saveTestName", testName);
         this.$store.commit("saveQuestions", questions);
         this.$store.commit("clearAnswers");

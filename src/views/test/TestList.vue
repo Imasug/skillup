@@ -21,6 +21,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { DataTableHeader } from "vuetify";
 import TestService from "../../domains/test/test-service";
+import GapiService from "@/infras/services/google/gapi-service";
 
 const HEADERS: DataTableHeader[] = [
   { text: "", value: "icon", width: "50px", sortable: false },
@@ -38,7 +39,11 @@ export default class TestList extends Vue {
   items: any[] = [];
 
   navigateToTest(data: any): void {
-    this.$router.push({ name: "test", params: { testName: data.name } });
+    this.$router.push({
+      name: "test",
+      params: { testName: data.name },
+      query: { id: data.id }
+    });
   }
 
   getIconName(name: string): string {
