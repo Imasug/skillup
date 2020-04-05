@@ -25,4 +25,11 @@ import Breadcrumbs from "@/components/Breadcrumbs.vue";
 export default class App extends Vue {
   drawer: boolean = true;
 }
+
+declare global {
+  interface Window {
+    console: any;
+    google: any;
+  }
+}
 </script>

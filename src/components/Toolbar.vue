@@ -17,7 +17,12 @@
     <v-btn icon class="mr-2">
       <v-icon>mdi-slack</v-icon>
     </v-btn>
-    <v-btn icon class="mr-2">
+    <v-btn
+      icon
+      class="mr-2"
+      href="https://github.com/Imasug/skillup"
+      target="_blank"
+    >
       <v-icon>mdi-github</v-icon>
     </v-btn>
   </v-app-bar>
