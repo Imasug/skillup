@@ -119,7 +119,7 @@ export default class Test extends Vue {
   submit(): void {
     (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
       if (flag) {
-        TestService.submit(() => {
+        TestService.submit(result => {
           this.$store.commit("changeCheckMode", true);
           this.$router.push({ name: "test-result" });
         });
