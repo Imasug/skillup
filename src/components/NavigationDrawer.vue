@@ -47,6 +47,11 @@ const MENUS: Menu[] = [
     icon: "mdi-youtube",
     title: "Videos",
     route: "videos"
+  },
+  {
+    icon: "mdi-chat-alert",
+    title: "Tips",
+    route: "tips"
   }
 ];
 

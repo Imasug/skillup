@@ -1,13 +1,8 @@
-export interface Question {
-  id: string;
-  category: string;
-  sentence: string;
-  question: string;
-  choices: Choice[];
-  correct: string;
+declare global {
+  interface Window {
+    console: any;
+    google: any;
+  }
 }
 
-export interface Choice {
-  value: string;
-  label: string;
-}
+export {};

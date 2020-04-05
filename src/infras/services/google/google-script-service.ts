@@ -8,9 +8,3 @@ export default class GoogleScriptService {
     });
   }
 }
-
-declare global {
-  interface Window {
-    google: any;
-  }
-}

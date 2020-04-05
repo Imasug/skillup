@@ -21,7 +21,9 @@
       "little-loader",
       "gapi",
       "vue-loading",
-      "skillup"
+      "skillup",
+      "gapi.client.drive",
+      "gapi.client.sheets"
     ],
     "paths": {
       "@/*": ["src/*"]

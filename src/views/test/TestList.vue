@@ -20,7 +20,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { DataTableHeader } from "vuetify";
-import TestService from "../../domains/test/test-service";
+import TestService from "../../domains/test/services/test-service";
 import GapiService from "@/infras/services/google/gapi-service";
 
 const HEADERS: DataTableHeader[] = [
@@ -59,7 +59,7 @@ export default class TestList extends Vue {
   }
 
   created() {
-    TestService.getTestList(data => (this.items = data));
+    TestService.getTests(data => (this.items = data));
   }
 }
 </script>

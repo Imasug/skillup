@@ -79,7 +79,7 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
 import ConfirmDialog from "@/components/ConfirmDialog.vue";
-import TestService from "../../domains/test/test-service";
+import TestService from "../../domains/test/services/test-service";
 
 // TODO research the best settings of styles
 @Component({
@@ -164,7 +164,7 @@ export default class Test extends Vue {
     this.$route.meta.breadcrumbs = [{ text: "Test" }, { text: testName }];
     // TODO check id
     if (this.$store.state.testName !== testName) {
-      TestService.getTests(id as string, questions => {
+      TestService.getQuestions(id as string, questions => {
         this.$store.commit("saveTestName", testName);
         this.$store.commit("saveQuestions", questions);
         this.$store.commit("clearAnswers");
