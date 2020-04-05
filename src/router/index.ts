@@ -10,6 +10,10 @@ const routes = [
   // TODO
   {
     path: "/",
+    redirect: "test-list"
+  },
+  {
+    path: "/test-list",
     name: "test-list",
     component: TestList,
     meta: {
@@ -26,9 +30,7 @@ const routes = [
     path: "/test-result",
     name: "test-result",
     component: TestResult,
-    meta: {
-      breadcrumbs: [{ text: "Test" }, { text: "Java" }]
-    }
+    meta: {}
   }
 ];
 

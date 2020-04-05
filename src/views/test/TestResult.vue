@@ -65,6 +65,9 @@ export default class TestResult extends Vue {
   }
 
   created(): void {
+    const testName = this.$store.state.testName;
+    this.$route.meta.breadcrumbs = [{ text: "Test" }, { text: testName }];
+
     this.total = this.$store.getters.questionsLength;
 
     const corrects = _.map(this.$store.state.questions, "correct");

@@ -7,9 +7,9 @@ const vm = new Loading();
 const component = vm.$mount(node);
 
 export default class VueLoading {
-    static install(Vue: typeof _Vue) {
-        Vue.prototype.$loading = component;
-    }
+  static install(Vue: typeof _Vue) {
+    Vue.prototype.$loading = component;
+  }
 }
 
 export const loading = component;
