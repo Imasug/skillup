@@ -7,7 +7,7 @@
       @click:row="navigateToTest"
     >
       <template v-slot:item.icon="{ item }">
-        <td style="height: 35px;">
+        <td style="height: 35px; border: none">
           <div class="d-flex justify-center align-center">
             <v-icon>{{ getIconName(item.name) }}</v-icon>
           </div>
