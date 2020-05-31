@@ -21,7 +21,8 @@
       "little-loader",
       "gapi",
       "vue-loading",
-      "skillup"
+      "skillup",
+      "gapi.auth2"
     ],
     "paths": {
       "@/*": ["src/*"]

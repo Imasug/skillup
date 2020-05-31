@@ -31,13 +31,21 @@ export default class GapiService {
         map(() => console.log("gapi.load")),
         mergeMap(() => gapi.client.init(args)),
         map(() => console.log("gapi.client.init")),
-        mergeMap(processing)
+        mergeMap(async () => {
+          const auth = gapi.auth2.getAuthInstance();
+          if (!auth.isSignedIn) {
+            await auth.signIn();
+          }
+          return processing();
+        })
       )
       .subscribe(
         (response: any) => {
-          const result = response.result;
-          callback(result);
-          // TODO error handling
+          if (response && "result" in response) {
+            callback(response.result);
+          } else {
+            callback(response);
+          }
         },
         error => {
           console.log(error);
