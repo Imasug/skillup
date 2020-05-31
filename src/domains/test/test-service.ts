@@ -1,10 +1,9 @@
+import { Question } from "@/@types/skillup";
 import GapiService from "@/infras/services/google/gapi-service";
 import store from "@/store";
 import _ from "lodash";
 import moment from "moment";
-import { from } from "rxjs";
-import { mergeMap } from "rxjs/operators";
-import { Question } from "@/@types/skillup";
+import { from } from 'rxjs';
 
 const TEST_LIST_FOLDER_ID: string = "17MBwpcRnYwVO8Gca1ZgsVtm8YwJNAqyC";
 const TEST_RESULT_FOLDER_ID: string = "16rnp_mER7VLTQNn1fnK6mwDZDtbhEsde";
@@ -117,8 +116,6 @@ export default class TestService {
     });
 
     const date = [[moment().format("YYYY/MM/DD")]];
-    // TODO
-    const name = [["テスト太郎"]];
     const testName = [[store.state.testName]];
     const score = [[`${correctCount} / ${total}`]];
     const rate = [[correctCount / total]];
@@ -132,60 +129,55 @@ export default class TestService {
       []
     );
 
-    GapiService.run(
-      () => {
-        return from(
-          (gapi.client as any).drive.files.copy({
-            fileId: TEST_RESULT_TEMPLATE_FILE_ID,
-            resource: {
-              parents: [TEST_RESULT_FOLDER_ID],
-              name: `${date}_${name}_${testName}`
-            }
-          })
-        ).pipe(
-          mergeMap((response: any) => {
-            return (gapi.client as any).sheets.spreadsheets.values.batchUpdate({
-              spreadsheetId: response.result.id,
-              resource: {
-                valueInputOption: "RAW",
-                data: [
-                  {
-                    range: "testName",
-                    values: testName
-                  },
-                  {
-                    range: "score",
-                    values: score
-                  },
-                  {
-                    range: "rate",
-                    values: rate
-                  },
-                  {
-                    range: "category",
-                    values: category
-                  },
-                  {
-                    range: "date",
-                    values: date
-                  },
-                  {
-                    range: "name",
-                    values: name
-                  },
-                  {
-                    range: "result",
-                    values: result
-                  }
-                ]
+    GapiService.run(() => {
+      const user = gapi.auth2.getAuthInstance().currentUser.get();
+      let name = [[user.getBasicProfile().getName()]];
+      return (gapi.client as any).drive.files.copy({
+        fileId: TEST_RESULT_TEMPLATE_FILE_ID,
+        resource: {
+          parents: [TEST_RESULT_FOLDER_ID],
+          name: `${date}_${name}_${testName}`
+        }
+      }).then((response: any) => {
+        return (gapi.client as any).sheets.spreadsheets.values.batchUpdate({
+          spreadsheetId: response.result.id,
+          resource: {
+            valueInputOption: "RAW",
+            data: [
+              {
+                range: "testName",
+                values: testName
+              },
+              {
+                range: "score",
+                values: score
+              },
+              {
+                range: "rate",
+                values: rate
+              },
+              {
+                range: "category",
+                values: category
+              },
+              {
+                range: "date",
+                values: date
+              },
+              {
+                range: "name",
+                values: name
+              },
+              {
+                range: "result",
+                values: result
               }
-            });
-          })
-        );
-      },
-      result => {
-        callback(result);
-      }
-    );
+            ]
+          }
+        });
+      });
+    }, (result: any) => {
+      callback(result);
+    });
   }
 }
