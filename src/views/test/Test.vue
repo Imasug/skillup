@@ -39,8 +39,7 @@
                         choice.value !== answer &&
                         choice.value === question.correct
                     }"
-                    >{{ choice.label }}</span
-                  >
+                  >{{ choice.label }}</span>
                 </v-label>
               </template>
             </v-radio>
@@ -165,6 +164,7 @@ export default class Test extends Vue {
     // TODO check id
     if (this.$store.state.testName !== testName) {
       TestService.getTests(id as string, questions => {
+        this.$store.commit("changeCheckMode", false);
         this.$store.commit("saveTestName", testName);
         this.$store.commit("saveQuestions", questions);
         this.$store.commit("clearAnswers");
