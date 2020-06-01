@@ -33,7 +33,7 @@ export default class GapiService {
           })
           .then(async () => {
             let auth = gapi.auth2.getAuthInstance();
-            if (!auth.isSignedIn) {
+            if (!auth.isSignedIn.get()) {
               await auth.signIn();
             }
             return processing();
