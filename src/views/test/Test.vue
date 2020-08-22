@@ -8,10 +8,12 @@
           md="5"
           :style="{ 'max-width': $vuetify.breakpoint.mdAndUp ? '460px' : '' }"
         >
-          <pre class="sentence">{{ question.sentence }}</pre>
+          <pre class="sentence"><span v-html="question.sentence"></span></pre>
         </v-col>
         <v-col cols="12" md="6">
-          <p style="height: 30px;">{{ question.question }}</p>
+          <p style="height: 30px;">
+            <span v-html="question.question"></span>
+          </p>
           <v-radio-group v-model="answer" :disabled="isCheckMode()">
             <v-radio
               v-for="choice in question.choices"
