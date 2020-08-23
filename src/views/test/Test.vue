@@ -11,9 +11,7 @@
           <pre class="sentence"><span v-html="question.sentence"></span></pre>
         </v-col>
         <v-col cols="12" md="6">
-          <p style="height: 30px;">
-            <span v-html="question.question"></span>
-          </p>
+          <pre style="height: 30px;"><span v-html="question.question"></span></pre>
           <v-radio-group v-model="answer" :disabled="isCheckMode()">
             <v-radio
               v-for="choice in question.choices"
@@ -184,6 +182,10 @@ export default class Test extends Vue {
 * {
   font-size: 12px;
   color: var(--black);
+}
+
+pre {
+  white-space: pre-wrap;
 }
 
 .sentence {
