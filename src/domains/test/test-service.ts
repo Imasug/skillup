@@ -29,7 +29,7 @@ export default class TestService {
             name: file.name,
             description: file.description,
             owner: file.owners[0].displayName,
-            updated: file.modifiedTime
+            updated: moment(file.modifiedTime).format("YYYY/MM/DD")
           });
         });
         callback(data);
