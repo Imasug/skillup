@@ -20,13 +20,14 @@ import GapiService from "@/infras/services/google/gapi-service";
 
 const HEADERS: DataTableHeader[] = [
   { text: "", value: "icon", width: "50px", sortable: false },
-  { text: "Name", value: "name", width: "200px" },
+  { text: "Name", value: "name", width: "300px" },
   { text: "Description", value: "description" },
   { text: "Owner", value: "owner", width: "150px" },
   { text: "Updated", value: "updated", width: "150px" }
 ];
 
 const JAVA_REGEX = new RegExp(".*java.*", "i");
+const DATABASE_REGEX = new RegExp(".*db.*", "i");
 
 @Component
 export default class TestList extends Vue {
@@ -46,6 +47,9 @@ export default class TestList extends Vue {
     switch (true) {
       case JAVA_REGEX.test(name):
         iconName = "$java";
+        break;
+      case DATABASE_REGEX.test(name):
+        iconName = "$database";
         break;
       default:
         break;
