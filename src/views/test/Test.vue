@@ -64,25 +64,28 @@
                 <v-btn icon @click="navigateToResult">
                   <v-icon>mdi-chart-donut</v-icon>
                 </v-btn>
+                <v-btn v-if="question.info" icon @click="showInfo(question.info)">
+                  <v-icon>mdi-information</v-icon>
+                </v-btn>
               </div>
             </div>
           </v-row>
         </v-col>
       </v-row>
     </v-container>
-    <ConfirmDialog ref="confirm" />
+    <Dialog ref="confirm" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
 import TestStepper from "@/views/test/components/TestStepper.vue";
-import ConfirmDialog from "@/components/ConfirmDialog.vue";
+import Dialog from "@/components/Dialog.vue";
 import TestService from "../../domains/test/test-service";
 
 // TODO research the best settings of styles
 @Component({
-  components: { TestStepper, ConfirmDialog }
+  components: { TestStepper, Dialog }
 })
 export default class Test extends Vue {
   question: object | null = null;
@@ -116,19 +119,21 @@ export default class Test extends Vue {
   }
 
   submit(): void {
-    (this.$refs.confirm as any).open("提出しますか？").then((flag: boolean) => {
-      if (flag) {
-        TestService.submit(result => {
-          this.$store.commit("changeCheckMode", true);
-          this.$router.push({ name: "test-result" });
-        });
-      }
-    });
+    (this.$refs.confirm as any)
+      .confirm("提出しますか？")
+      .then((flag: boolean) => {
+        if (flag) {
+          TestService.submit(result => {
+            this.$store.commit("changeCheckMode", true);
+            this.$router.push({ name: "test-result" });
+          });
+        }
+      });
   }
 
   reset(): void {
     (this.$refs.confirm as any)
-      .open("リセットしますか？")
+      .confirm("リセットしますか？")
       .then((flag: boolean) => {
         if (flag) {
           this.$store.commit("changeCheckMode", false);
@@ -141,6 +146,12 @@ export default class Test extends Vue {
 
   navigateToResult(): void {
     this.$router.push({ name: "test-result" });
+  }
+
+  showInfo(info: string): void {
+    (this.$refs.confirm as Dialog)
+      .open("解説", info, { width: 500, height: 150 })
+      .then();
   }
 
   setQuestion() {

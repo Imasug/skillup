@@ -64,11 +64,15 @@ export default class TestService {
           item.question = obj.question;
           item.choices = [];
           for (let i = 1; i <= 4; i++) {
-            item.choices.push({
-              value: `${i}`,
-              label: obj[`choice${i}`]
-            });
+            let label = obj[`choice${i}`]
+            if (label) {
+              item.choices.push({
+                value: `${i}`,
+                label: label
+              });
+            }
           }
+          item.info = obj.info;
           item.correct = obj.correct;
           items.push(item);
         });
