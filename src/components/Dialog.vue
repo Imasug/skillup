@@ -4,7 +4,7 @@
       <v-card-title class="grey lighten-2">{{ title }}</v-card-title>
       <v-card-text :style="{height: options.height + 'px'}">
         <div class="text--primary mt-3">
-          <pre>{{ message }}</pre>
+          <pre style="white-space: pre-wrap">{{ message }}</pre>
         </div>
       </v-card-text>
       <v-card-actions>
