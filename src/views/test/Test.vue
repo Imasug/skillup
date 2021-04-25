@@ -12,24 +12,25 @@
         </v-col>
         <v-col cols="12" md="6">
           <pre style="height: 30px;"><span v-html="question.question"></span></pre>
-          <v-radio-group v-model="answer" :disabled="isCheckMode()">
-            <v-radio
-              v-for="choice in question.choices"
-              :key="choice.value"
-              :value="choice.value"
-              color="var(--accent1)"
-              @click.native="saveAnswer(choice.value)"
-            >
-              <template v-slot:label>
-                <v-label>
-                  <span
-                    :style="{
+          <div style="height: 160px;">
+            <v-radio-group v-model="answer" :disabled="isCheckMode()">
+              <v-radio
+                v-for="choice in question.choices"
+                :key="choice.value"
+                :value="choice.value"
+                color="var(--accent1)"
+                @click.native="saveAnswer(choice.value)"
+              >
+                <template v-slot:label>
+                  <v-label>
+                    <span
+                      :style="{
                       'font-weight':
                         isCheckMode() && choice.value === question.correct
                           ? '600'
                           : ''
                     }"
-                    :class="{
+                      :class="{
                       'success--text':
                         isCheckMode() &&
                         choice.value === answer &&
@@ -39,11 +40,13 @@
                         choice.value !== answer &&
                         choice.value === question.correct
                     }"
-                  >{{ choice.label }}</span>
-                </v-label>
-              </template>
-            </v-radio>
-          </v-radio-group>
+                      v-html="choice.label"
+                    ></span>
+                  </v-label>
+                </template>
+              </v-radio>
+            </v-radio-group>
+          </div>
           <v-row>
             <v-btn icon @click="prev">
               <v-icon>mdi-arrow-left</v-icon>
@@ -150,7 +153,7 @@ export default class Test extends Vue {
 
   showInfo(info: string): void {
     (this.$refs.confirm as Dialog)
-      .open("解説", info, { width: 500, height: 150 })
+      .open("解説", info, { width: 600, height: 200 })
       .then();
   }
 

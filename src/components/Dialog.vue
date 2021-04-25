@@ -2,9 +2,13 @@
   <v-dialog v-model="dialog" :max-width="options.width">
     <v-card>
       <v-card-title class="grey lighten-2">{{ title }}</v-card-title>
-      <v-card-text :style="{height: options.height + 'px'}">
+      <v-card-text>
         <div class="text--primary mt-3">
-          <pre style="white-space: pre-wrap">{{ message }}</pre>
+          <pre
+            style="white-space: pre-wrap; overflow-y: scroll"
+            :style="{height: options.height + 'px'}"
+            v-html="message"
+          ></pre>
         </div>
       </v-card-text>
       <v-card-actions>
